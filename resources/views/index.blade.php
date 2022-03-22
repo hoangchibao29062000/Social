@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    hi
+    An Tesst
     <table>
         @foreach($post as $item)
         <tr>
