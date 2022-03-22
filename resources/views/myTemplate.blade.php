@@ -18,6 +18,8 @@
 </head>
 <body>
 @include('block.header')
+
+
     <?php
         if(!empty($_SESSION['login'])) :
     ?>
@@ -28,8 +30,19 @@
     ?>
     
         <!-- Content -->
-        @yield('login')
-        @yield('content')
+        <div class="row" style="margin-top:70px;height:100px">
+            <div class="col-2">
+                @include('block.sidebar')
+            </div>
+            <div class="col-7">
+            @yield('login')
+            @yield('content')
+        </div>
+        <div class="col-3">
+        @include('block.messages')
+        </div>
+        </div>
+        
     
     <?php
         if(empty($_SESSION['login'])) :

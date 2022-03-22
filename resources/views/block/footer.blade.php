@@ -1,3 +1,3 @@
-<div class="bg-danger">
+<div class="bg-danger fixed-bottom">
 Footer work!
 </div>
