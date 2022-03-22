@@ -1,6 +1,4 @@
-
-    @extends('welcome')
-    
+{{-- @extends('welcome')
     @section('content')
     <div class="container">
         <div class="login">
@@ -30,4 +28,5 @@
         </div>
     </div>
     @endsection
-    
+     --}}
+     dsds

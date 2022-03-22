@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\posts;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post = posts::get();
-        return view('index',compact('post'));
+        $user = User::get();
+        return view('login',compact('user'));
     }
 
     /**
@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -36,7 +36,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -47,8 +47,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
-
+        
     }
 
     /**
@@ -85,8 +84,13 @@ class PostController extends Controller
         //
     }
 
-    public function check_login(Request $request)
+    public function checkLogin(Request $request)
     {
-        //
+        // dd($request->email);
+        $user = User::get();
+        foreach ($user as $key => $value) {
+            var_dump($value['email']);
+        }
+        // return view('index');
     }
 }
