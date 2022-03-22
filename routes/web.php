@@ -14,7 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    // dd(PostController::class);
-    return view('index', PostController::class);
-});
+Route::resource('/', PostController::class);
