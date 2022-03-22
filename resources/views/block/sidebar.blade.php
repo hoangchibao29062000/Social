@@ -1,13 +1,13 @@
-<div class="navbar-light bg-light">
+<div class=" navbar-lightbg-light">
     <!-- Thông tin cá nhân -->
     <button class="btn btn-light w-100 text-left" style="border-radius: 360px;">
     <img src="/images/user.png" alt="" srcset="" width="40" height="40">
-    <label>Dương An</label>
+    <label>Thông Tin Cá Nhân</label>
     </button>
     <br>
     <button class="btn btn-light w-100 text-left" style="border-radius: 360px;">
-    <img src="/images/friends.png" alt="" srcset="" width="40" height="40">
-    <label>Bạn bè</label>
+    <img src="/images/writing.png" alt="" srcset="" width="40" height="40">
+    <label>Bài Viết Của Tôi</label>
     </button>
     <br>
     <button class="btn btn-light w-100 text-left" style="border-radius: 360px;">

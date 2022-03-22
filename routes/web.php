@@ -16,5 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/', PostController::class);
-Route::resource('/login', UserController::class);
-Route::post('/login/checkLogin', [UserController::class, 'checkLogin'])->name('user.login');
+// Route::resource('/login', UserController::class);
+// Route::post('/login/checkLogin', [UserController::class, 'checkLogin'])->name('user.login');

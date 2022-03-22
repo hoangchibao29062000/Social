@@ -6,16 +6,32 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <input type="text" placeholder="Bạn cần tìm...." class="form-control" style="border-radius: 360px; width:250px">
-    <ul class="navbar-nav m-auto ">
+    <ul class="navbar-nav container">
       <li class="nav-item active">
-        <a class="nav-link" href="#"><img src="images/home.png" alt="" srcset="" width="40" height="40"></span></a>
+        <a class="nav-link" href="#"><img src="images/home.png" alt="" srcset="" width="45" height="45"></a>
       </li>
       
     </ul>
-    <div class="form-inline my-2 my-lg-0">
-        <button class="btn btn-light" style="border-radius: 360px;">Dương An</button>
-        <button class="btn btn-light" style="border-radius: 360px;"><img src="images/dots-menu.png" alt="" srcset="" width="30" height="30"></button>
-        <button class="btn btn-light" style="border-radius: 360px;"><img src="images/caret-down.png" alt="" srcset="" width="30" height="30"></button>
+    <div class="form-inline my-2 ml-auto">
+        <!-- Hiển thị Tên Đăng nhập -->
+        <div>
+          <img src="/images/user.png" alt="" srcset="" width="40" height="40">
+          <button class="btn btn-light" style="border-radius: 360px;">Dương An</button>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn btn btn-light" style="border-radius: 360px;"><img src="images/caret-down.png" alt="" srcset="" width="30" height="30"></button>
+          <div class="dropdown-content">
+          <button type="button" class="btn btn-light">
+          <img src="images/help.png" width="40" height="40" style="border-radius: 360px;" alt="">
+            Trợ giúp & Hỗ trợ
+          </button>
+          <button type="button" class="btn btn-light w-100 text-left">
+            <img src="images/logout.png" width="40" height="40" style="border-radius: 360px;" alt="">
+            Đăng xuất
+          </button>
+          </div>
+        </div>
+        <!-- <button class="btn btn-light" style="border-radius: 360px;"></button> -->
     </div>
   </div>
 </nav>

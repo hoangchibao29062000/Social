@@ -15,7 +15,14 @@ class PostController extends Controller
     public function index()
     {
         $post = posts::get();
-        return view('index',compact('post'));
+        // Xét trường hợp đã login hay chưa
+            // if(empty($_SESSION['login'])) {
+            //     return redirect('/login');
+            // }else {
+            //     return view('index',compact('post'));
+            // }
+        return view('index',['title' => 'Trang Chủ']);
+        // return view('login',['title' => 'Đăng nhập']);
     }
 
     /**
