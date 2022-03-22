@@ -7,6 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    hiiiiiiiii
+    hi
+    <table>
+        @foreach($post as $item)
+        <tr>
+            <td>{{$item->post_id}}</td>
+        </tr>
+        @endforeach
+    </table>
 </body>
 </html>
