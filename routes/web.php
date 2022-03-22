@@ -13,5 +13,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Điều hướng vào trang chủ
 Route::resource('/', PostController::class);
+// Điều hướng vào trang đăng nhập
+Route::get('/login', function () {
+    return view('login',['title' => 'Đăng Nhập']);
+});
+
