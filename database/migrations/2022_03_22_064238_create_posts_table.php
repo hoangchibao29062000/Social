@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('content');
             $table->string('image')->nullable();
             $table->string('role');
+            $table->date('date');
             $table->timestamps();
         });
         Schema::table('posts', function (Blueprint $table) {

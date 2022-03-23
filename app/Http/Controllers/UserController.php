@@ -90,7 +90,7 @@ class UserController extends Controller
         $user = User::get();
         foreach ($user as $key => $value) {
             var_dump($value['email']);
-        }
+        }   
         // return view('index');
     }
 }
