@@ -16,7 +16,8 @@ class posts extends Model
         'content',
         'role',
         'image',
-        'user_id'
+        'user_id',
+        'date'
     ];
     // Lấy thông tin người đăng
     public function user(){

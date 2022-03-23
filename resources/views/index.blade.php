@@ -20,36 +20,39 @@
                         </button>
                     </div>
                     <!-- Body Modal -->
-                    <div class="modal-body">
-                        <div class="row">
-                            <!-- Avatar người tạo bài -->
-                            <div class="col-1">
-                                <img src="images/user.png" height="30" width="30"alt="" srcset="">
-                            </div>
-                            <div class="col-10 text-left">
-                                <div class="row">
-                                    <!-- Tên người tạo bài -->
-                                    <div class="col-12">
-                                        {{$_SESSION['login']['name']}}
-                                    </div>
-                                    <!-- Chọn chế độ của bài viết -->
-                                    <div class="col-12">
-                                    <select name="role">
-                                        <option value="private">Chỉ mình tôi</option>
-                                        <option value="public">Cộng đồng</option>
-                                    </select>
+                    <form action="/post" method="post" enctype="multipart/form">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="row mb-2">
+                                <!-- Avatar người tạo bài -->
+                                <div class="col-1 pt-2">
+                                    <img src="images/user.png" height="30" width="30"alt="" srcset="">
+                                </div>
+                                <div class="col-10 text-left">
+                                    <div class="row">
+                                        <!-- Tên người tạo bài -->
+                                        <div class="col-12">
+                                            {{$_SESSION['login']['name']}}
+                                        </div>
+                                        <!-- Chọn chế độ của bài viết -->
+                                        <div class="col-12">
+                                        <select name="role">
+                                            <option value="0">Chỉ mình tôi</option>
+                                            <option value="1">Cộng đồng</option>
+                                        </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <textarea name="content" placeholder="Hôm nay bạn thế nào" cols="60" rows="10"></textarea>
+                            <p>Chọn ảnh</p>
+                            <input type="file" name="image"> 
                         </div>
-                        <textarea name="content" placeholder="Hôm nay bạn thế nào" cols="60" rows="10"></textarea>
-                        <p>Chọn ảnh</p>
-                        <input type="file" name="image"> 
-                    </div>
-                    <!-- Nút Submit -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary form-control">Đăng Bài Viết</button>
-                    </div>
+                        <!-- Nút Submit -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary form-control">Đăng Bài Viết</button>
+                        </div>
+                    </form>
                 </div>
                 </div>
             </div>
@@ -64,7 +67,7 @@
         <!-- Tài khoản đăng -->
         <div class="row">
             <div class="col-1">
-                <button class="btn btn-light" style="border-radius: 360px;"><img src="images/user.png" width="30" height="30" alt="" srcset=""></button>
+                <a href="#" class="rounded-circle"><img src="images/{{$post->user->avatar }}" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
             </div>
             <div class="col-9 text-left">
                 <p class="h5"> {{$post->user->name }}</p>

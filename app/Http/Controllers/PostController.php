@@ -39,9 +39,18 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function upPost(Request $request)
     {
-        //
+        var_dump($request->all());
+        $dateNow = date("Y-m-d H:i:s");
+        posts::create([
+            'content' => $request->content,
+            'image' => $request->image,
+            'role' => $request->role,
+            'user_id' => $_SESSION['login']->user_id,
+            'date' => $dateNow
+        ]);
+        return redirect('/');
     }
 
     /**
