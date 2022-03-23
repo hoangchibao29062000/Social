@@ -16,12 +16,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post = posts::get();
+        $posts = posts::get();
         // Xét trường hợp đã login hay chưa
             if(!isset($_SESSION['login'])) {
                 return redirect('/login');
             }else {
-                return view('index',compact('post'),['title' => 'Trang Chủ']);
+                return view('index',compact('posts'),['title' => 'Trang Chủ']);
             }
         // return view('index',['title' => 'Trang Chủ']);
         // return view('login',['title' => 'Đăng nhập']);
@@ -59,11 +59,11 @@ class PostController extends Controller
     //     //
 
     // }
-    public function show()
-    {
-        $posts = posts::get();
-        return view('index',compact('posts'));
-    }
+    // public function show()
+    // {
+    //     $posts = posts::get();
+    //     return view('index',compact('posts'));
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -100,6 +100,7 @@ class PostController extends Controller
     }
     // Phương thức điều hướng tới tab Bài Viết Của Tôi
     public function myPost() {
+
         return view('myPost',['title' => 'Bài Viết Của Tôi']);
     }
 }
