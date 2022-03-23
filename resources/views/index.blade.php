@@ -1,21 +1,6 @@
 <!-- Giao diện chính -->
 @extends('myTemplate')
     @section('content')
-    <!-- Đăng bài viết -->
-    <div class="card mt-4 ml-5" style="width:62rem">
-        <div class="row m-2">
-          <div class="col-1">
-          <button class="btn btn-light " style="border-radius: 360px;"><img src="images/user.png" width="30" height="30" alt="" srcset=""></button>
-          </div>
-          <div class="col-9">
-            <input class="btn btn-light text-left form-control " style="border-radius: 360px;" placeholder="Hôm nay bạn thế nào?"></input>
-          </div>
-          <div class="col-2">
-            <button class="btn btn-primary">Đăng bài</button>
-          </div>
-          <hr width="100%">
-        </div>
-    </div>
   <div class="card mt-4 ml-5" style="width:62rem">
     <div class="card-body">
       <!-- Tài khoản đăng -->
