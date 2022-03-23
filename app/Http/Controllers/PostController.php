@@ -6,6 +6,7 @@ session_start();
 use App\Models\posts;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
