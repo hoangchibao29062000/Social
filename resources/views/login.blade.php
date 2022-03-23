@@ -1,5 +1,5 @@
-@extends('welcome')
-    @section('content')
+@extends('myTemplate')
+    @section('login')
     <div class="container">
         <div class="login">
             <div class="card" style="width: 20rem;">

@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+session_start();
+// Điều hướng tới trang chủ
 Route::resource('/', PostController::class);
-// Route::resource('/login', UserController::class);
-// Route::post('/login/checkLogin', [UserController::class, 'checkLogin'])->name('user.login');
+// Điều hướng trang đăng nhập
+Route::resource('/login', UserController::class);
+// Xử lý đăng nhập
+Route::post('/login/checkLogin', [UserController::class, 'checkLogin'])->name('user.login');
+

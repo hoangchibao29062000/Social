@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         $user = User::get();
-        return view('login',compact('user'));
+        return view('login',['title' => 'Đăng nhập']);
     }
 
     /**
@@ -90,7 +90,7 @@ class UserController extends Controller
         $user = User::get();
         foreach ($user as $key => $value) {
             var_dump($value['email']);
-        }   
+        }
         // return view('index');
     }
 }
