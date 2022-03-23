@@ -46,7 +46,7 @@
                             </div>
                             <textarea name="content" placeholder="Hôm nay bạn thế nào" cols="60" rows="10"></textarea>
                             <p>Chọn ảnh</p>
-                            <input type="file" name="image"> 
+                            <input type="file" name="image">
                         </div>
                         <!-- Nút Submit -->
                         <div class="modal-footer">
@@ -71,7 +71,7 @@
             </div>
             <div class="col-9 text-left">
                 <p class="h5"> {{$post->user->name }}</p>
-                <p class="text-secondary">mới đây. <img src="images/friends.png" width="20" height="20" alt="" srcset=""></p>
+                <p class="text-secondary">{{ $post->date }}<img src="images/friends.png" width="20" height="20" alt="" srcset=""></p>
             </div>
             <div class="col-2 text-right">
                 <button class="btn btn-light " style="border-radius: 360px;"><img src="images/dots.png" width="20" height="20" alt="" srcset=""></button>
@@ -83,18 +83,18 @@
             </div>
         </div>
         <!-- Hình của bài viết -->
-        <img src="images/post-1.jpg" height="500">
+        <img src="images/{{ $post->image }}" height="500">
         <hr class="text-center">
         <!-- Lượt thích -->
         <div class="row ml-3 mr-3">
             <div class="col-10">
                 <p>
                     <img src="images/like.png" width="20" height="20" alt="" srcset="">
-                    100
+                    <span>{{ $post->likes->count() }}</span>
                     </p>
                 </div>
                 <div class="col-2 text-right">
-                    <p>n bình luận</p>
+                    <p>{{ $post->comments->count() }} bình luận</p>
                 </div>
             </div>
         <!-- Nút Like, Bình Luận, Chia Sẻ -->
