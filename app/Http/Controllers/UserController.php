@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+session_start();
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -86,11 +87,24 @@ class UserController extends Controller
 
     public function checkLogin(Request $request)
     {
-        // dd($request->email);
+        $e = 0;
         $user = User::get();
         foreach ($user as $key => $value) {
-            var_dump($value['email']);
+            if($request->all()['email'] === $value['email']){ // kiểm tra email 
+                if(md5($request->all()['password']) == $value['password']){ // kiểm tra mật khẩu
+                    $e++; // cấm cờ
+                    $_SESSION['login'] = $request->all();
+                    return redirect('/');
+                }
+            }
         }
-        // return view('index');
+        if($e == 0){
+            echo '<script type="text/javascript"> alert("Email không tồn tại")</script>' ;
+        }
+    }
+
+    public function checkLogout(){
+        session_destroy();
+        return redirect('/login');
     }
 }

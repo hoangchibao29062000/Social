@@ -26,10 +26,10 @@
           <img src="images/help.png" width="40" height="40" style="border-radius: 360px;" alt="">
             Trợ giúp & Hỗ trợ
           </button>
-          <button type="button" class="btn btn-light w-100 text-left">
+          <a href="/logout"class="btn btn-light w-100 text-left">
             <img src="images/logout.png" width="40" height="40" style="border-radius: 360px;" alt="">
             Đăng xuất
-          </button>
+          </a>
           </div>
         </div>
         <!-- <button class="btn btn-light" style="border-radius: 360px;"></button> -->
