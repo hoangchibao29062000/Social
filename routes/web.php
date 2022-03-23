@@ -28,6 +28,4 @@ Route::post('/login/checkLogin', [UserController::class, 'checkLogin'])->name('u
 Route::get('/logout', [UserController::class, 'checkLogout'])->name('user.logout');
 
 // Điều hướng tới trang bài viết của tôi
-Route::get('/myPost', function () {
-    return view('myPost',['title' => 'Bài Viết Của Tôi']);
-});
+Route::get('/myPost', [PostController::class,'myPost'])->name('post.myPost');

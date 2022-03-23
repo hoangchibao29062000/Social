@@ -93,9 +93,8 @@ class PostController extends Controller
     {
         //
     }
-
-    public function check_login(Request $request)
-    {
-        //
+    // Phương thức điều hướng tới tab Bài Viết Của Tôi
+    public function myPost() {
+        return view('myPost',['title' => 'Bài Viết Của Tôi']);
     }
 }
