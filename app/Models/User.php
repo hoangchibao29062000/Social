@@ -22,7 +22,7 @@ class User extends Authenticatable
         'gender'
     ];
 
-    // Loại bỏ những thông tin không cần  
+    // Loại bỏ những thông tin không cần
     protected $hidden = [
         'remember_token',
     ];
@@ -30,4 +30,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function posts(){
+        return $this->hasMany(posts::class,'user_id','user_id');
+    }
 }

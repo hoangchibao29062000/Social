@@ -16,10 +16,21 @@ class posts extends Model
         'content',
         'role',
         'image',
-        'user_id'
+        'user_id',
+        'date'
     ];
     // Lấy thông tin người đăng
     public function user(){
         return $this->hasOne('App\Models\User' ,'user_id','user_id');
+    }
+
+    // Lấy thông tin người thích
+    public function likes(){
+        return $this->hasMany(likes::class,'post_id','post_id');
+    }
+
+    // Lấy thông tin người bình luận
+    public function comments(){
+        return $this->hasMany(comments::class,'post_id','post_id');
     }
 }
