@@ -30,12 +30,7 @@ class UserController extends Controller
         
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //Xử lý đăng ký
     public function store(Request $request)
     {
         var_dump($request->all());
