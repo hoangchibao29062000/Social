@@ -1,6 +1,9 @@
 <!-- Giao diện chính -->
 @extends('myTemplate')
     @section('content')
+    <?php
+    var_dump($_SESSION['login']);
+    ?>
   <div class="card mt-4 ml-5" style="width:62rem">
     <div class="card-body">
       <!-- Tài khoản đăng -->

@@ -20,4 +20,6 @@ Route::resource('/', PostController::class);
 Route::resource('/login', UserController::class);
 // Xử lý đăng nhập
 Route::post('/login/checkLogin', [UserController::class, 'checkLogin'])->name('user.login');
+// xử lý đăng xuất
+Route::get('/logout', [UserController::class, 'checkLogout'])->name('user.logout');
 

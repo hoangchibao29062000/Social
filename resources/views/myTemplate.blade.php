@@ -56,7 +56,10 @@
    </style>
 </head>
 <body>
-    @if (!empty($_SESSION['login']))
+    @if (isset($_SESSION['login']))
+        <?php 
+            var_dump($_SESSION['login']);
+        ?>
         @include('block.header')
         <!-- Content -->
         <div class="row" style="margin-top:90px;margin-right: 15px;">
