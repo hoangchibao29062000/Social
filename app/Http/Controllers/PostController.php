@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 session_start();
 use App\Models\posts;
-
+use DateTime;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    
+
     public function index()
     {
         $posts = posts::get();
@@ -42,7 +42,7 @@ class PostController extends Controller
     public function upPost(Request $request)
     {
         var_dump($request->all());
-        $dateNow = date("Y-m-d H:i:s");
+        $dateNow = new DateTime();
         posts::create([
             'content' => $request->content,
             'image' => $request->image,

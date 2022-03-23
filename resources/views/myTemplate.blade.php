@@ -19,7 +19,7 @@
         }
         /* Kiểu nút Dropdown */
             .dropbtn {
-               
+
                 color: white;
                 font-weight: bold;
                 padding: 16px;
@@ -46,13 +46,13 @@
             }
 
             /* Liên kết bên trong danh sách thả xuống */
-           
+
             /* Hiển thị menu thả xuống khi di chuột */
             .dropdown:hover .dropdown-content {
                 display: block;
             }
 
-           
+
    </style>
 </head>
 <body>
@@ -69,7 +69,7 @@
                 <div class="col-7 col-lg-7 col-xl-7">
                     @yield('content')
                 </div>
-                <div class="col-3 col-lg-3 col-xl-3"> 
+                <div class="col-3 col-lg-3 col-xl-3">
                     @include('block.messages')
                 </div>
             @endif
