@@ -88,7 +88,7 @@ class UserController extends Controller
     {
         //
     }
-
+    // Phương thức xử lý đăng nhật
     public function checkLogin(Request $request)
     {
         $e = 0;

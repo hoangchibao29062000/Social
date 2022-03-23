@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  <a class="navbar-brand" href="#"><img src="images/facebook.png" alt="" srcset="" width="40" height="40"></a>
+  <a class="navbar-brand" href="/"><img src="images/facebook.png" alt="" srcset="" width="40" height="40"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -9,7 +9,7 @@
     <ul class="navbar-nav container">
       <!-- Nút Trang Chủ -->
       <li class="nav-item active">
-        <a class="nav-link" href=""><img src="images/home.png" alt="" srcset="" width="45" height="45"></a>
+        <a class="nav-link" href="/"><img src="images/home.png" alt="" srcset="" width="45" height="45"></a>
       </li>
       
     </ul>

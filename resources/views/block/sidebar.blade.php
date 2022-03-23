@@ -1,5 +1,6 @@
 <div class=" navbar-lightbg-light">
     <!-- Thông tin cá nhân -->
+    <a href="/myInfo">
     <button class="btn btn-light w-100 text-left" style="border-radius: 360px;">
     @if($_SESSION['login']->avatar == null)
         <img src="/images/user.png" alt="" srcset="" width="40" height="40" class="rounded-circle">
@@ -8,6 +9,7 @@
     @endif
     <label>Thông Tin Cá Nhân</label>
     </button>
+    </a>
     <br>
     <a href="/myPost">
         <button class="btn btn-light w-100 text-left" style="border-radius: 360px;">

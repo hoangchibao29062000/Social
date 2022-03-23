@@ -1,7 +1,7 @@
 @extends('myTemplate')
     @section('login')
     <div class="container">
-        <div class="login">
+        <div class="form">
             <div class="card" style="width: 20rem;">
                <form action="/login/checkLogin" method="post">
                     @csrf
