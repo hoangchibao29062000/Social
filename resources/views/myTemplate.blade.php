@@ -51,44 +51,27 @@
             .dropdown:hover .dropdown-content {
                 display: block;
             }
+
+           
    </style>
 </head>
 <body>
-{{-- @include('block.header') --}}
-    <?php
-        if(!empty($_SESSION['login'])) :
-    ?>
-        <!-- Header -->
-        @include('block.header')
-    <?php
-        endif;
-    ?>
-    <?php
-        if(!empty($_SESSION['login'])) :
-    ?>
+@include('block.header')
+
         <!-- Content -->
         <div class="row" style="margin-top:90px;margin-right: 15px;">
             <div class=" bg-light col-2 col-lg-2 col-xl-2 fixed-left" style="width:1000px">
-                    @include('block.sidebar')
+                @include('block.sidebar')
             </div>
             <div class="col-7 col-lg-7 col-xl-7">
+                @yield('login')
                 @yield('content')
             </div>
             <div class="col-3 col-lg-3 col-xl-3"> 
-                    @include('block.messages')
-                
+                @include('block.messages')
             </div>
         </div>
-    <?php
-        endif;
-    ?>   
-    
-    <?php
-        if(empty($_SESSION['login'])) :
-    ?>
-       @yield('login')
-    <?php
-        endif;
-    ?>
+        
+
 </body>
 </html>
