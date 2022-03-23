@@ -56,22 +56,35 @@
    </style>
 </head>
 <body>
-    @if (!empty($_SESSION['login']))
-        @include('block.header')
-        <!-- Content -->
-        <div class="row" style="margin-top:90px;margin-right: 15px;">
-            <div class=" bg-light col-2 col-lg-2 col-xl-2 fixed-left" style="width:1000px">
-                @include('block.sidebar')
-            </div>
-            <div class="col-7 col-lg-7 col-xl-7">
-                @yield('content')
-            </div>
-            <div class="col-3 col-lg-3 col-xl-3"> 
-                @include('block.messages')
-            </div>
-        </div>
+    @if (empty($_SESSION['login']))
+            <!-- Header -->
+            @include('block.header')
+                <!-- Content -->
+                <div class="row" style="margin-top:90px;margin-right: 15px;">
+                    <div class=" bg-light col-2 col-lg-2 col-xl-2" style="width:1000px">
+                        @include('block.sidebar')
+                    </div>
+                    <!-- Trang chủ -->
+                    @if ($title == 'Trang Chủ')
+                        <div class="col-7 col-lg-7 col-xl-7">
+                            @yield('content')
+                        </div>
+                        <div class="col-3 col-lg-3 col-xl-3"> 
+                            @include('block.messages')
+                        </div>
+                    @endif
+
+                    <!-- Bài Viết Của Tôi -->
+                    @if ($title == "Bài Viết Của Tôi")
+                    <div class="col-10 col-lg-10 col-xl-10">
+                        @yield('myPost')
+                    </div>
+                    @endif
+
+                </div>
     @else
         @yield('login')
+        @yield('register')
     @endif
    
 </body>

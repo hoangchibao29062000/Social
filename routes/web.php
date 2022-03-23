@@ -14,10 +14,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Điều hướng tới trang chủ  
+// Điềug c hướng tới tranhủ  
 Route::resource('/', PostController::class);
+// Điều hướng tới trang đăng Ký
+Route::get('/register', function () {
+    return view('register',['title' => 'Đăng Ký']);
+});
 // Điều hướng trang đăng nhập
 Route::resource('/login', UserController::class);
 // Xử lý đăng nhập
 Route::post('/login/checkLogin', [UserController::class, 'checkLogin'])->name('user.login');
 
+// Điều hướng tới trang bài viết của tôi
+Route::get('/myPost', function () {
+    return view('myPost',['title' => 'Bài Viết Của Tôi']);
+});

@@ -19,12 +19,12 @@
                     <button type="submit" class="btn btn-primary form-control mb-3" >Đăng nhập</button>
                     <a href="">Quên mật khẩu</a>
                    </div>
-                   <hr width="60%">
+               </form>
+               <hr width="60%">
                    <!-- Nút Đăng Ký -->
                    <div class="m-3 text-center">
-                    <button type="submit" class="btn btn-success w-50 form-control mb-3">Tạo Tài Khoản</button>
+                    <a href="/register"><button class="btn btn-success w-50 form-control mb-3">Tạo Tài Khoản</button></a>
                    </div>
-               </form>
             </div>
         </div>
     </div>

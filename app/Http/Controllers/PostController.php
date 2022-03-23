@@ -16,12 +16,12 @@ class PostController extends Controller
     {
         $post = posts::get();
         // Xét trường hợp đã login hay chưa
-            if(empty($_SESSION['login'])) {
-                return redirect('/login');
-            }else {
-                return view('index',compact('post'));
-            }
-        // return view('index',['title' => 'Trang Chủ']);
+            // if(empty($_SESSION['login'])) {
+            //     return redirect('/login');
+            // }else {
+            //     return view('index',compact('post'));
+            // }
+        return view('index',['title' => 'Trang Chủ']);
         // return view('login',['title' => 'Đăng nhập']);
     }
 

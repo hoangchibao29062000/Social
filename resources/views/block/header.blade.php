@@ -7,8 +7,9 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <input type="text" placeholder="Bạn cần tìm...." class="form-control" style="border-radius: 360px; width:250px">
     <ul class="navbar-nav container">
+      <!-- Nút Trang Chủ -->
       <li class="nav-item active">
-        <a class="nav-link" href="#"><img src="images/home.png" alt="" srcset="" width="45" height="45"></a>
+        <a class="nav-link" href=""><img src="images/home.png" alt="" srcset="" width="45" height="45"></a>
       </li>
       
     </ul>
