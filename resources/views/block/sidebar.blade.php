@@ -1,7 +1,11 @@
 <div class=" navbar-lightbg-light">
     <!-- Thông tin cá nhân -->
     <button class="btn btn-light w-100 text-left" style="border-radius: 360px;">
-    <img src="images/user.png" alt="" srcset="" width="40" height="40">
+    @if($_SESSION['login']->avatar == null)
+        <img src="/images/user.png" alt="" srcset="" width="40" height="40" class="rounded-circle">
+    @else
+        <img src="/images/<?php echo ($_SESSION['login']->avatar);  ?>" class="rounded-circle" alt="" srcset="" width="40" height="40">
+    @endif
     <label>Thông Tin Cá Nhân</label>
     </button>
     <br>

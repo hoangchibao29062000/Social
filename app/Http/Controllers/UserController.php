@@ -38,7 +38,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump($request->all());
         User::create([
             'password' => md5($request->password),
             'name' => $request->name,
@@ -98,7 +97,7 @@ class UserController extends Controller
     public function checkLogin(Request $request)
     {
         $e = 0;
-        $user = User::get();
+        $user = User::get(); // lấy all user
         foreach ($user as $key => $value) {
             if($request->all()['email'] === $value['email']){ // kiểm tra email 
                 $e++;

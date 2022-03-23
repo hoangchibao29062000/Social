@@ -16,8 +16,16 @@
     <div class="form-inline my-2 ml-auto">
         <!-- Hiển thị Tên Đăng nhập -->
         <div>
-          <img src="/images/user.png" alt="" srcset="" width="40" height="40">
-          <button class="btn btn-light" style="border-radius: 360px;">Dương An</button>
+          @if($_SESSION['login']->avatar == null)
+            <img src="/images/user.png" alt="" srcset="" width="40" height="40" class="rounded-circle">
+          @else
+            <img src="/images/<?php echo ($_SESSION['login']->avatar);  ?>" alt="" srcset="" width="40" height="40" class="rounded-circle">
+          @endif
+          <button class="btn btn-light" style="border-radius: 360px;">
+            <?php
+              echo ($_SESSION['login']->name);  
+            ?>
+          </button>
         </div>
         <div class="dropdown">
           <button class="dropbtn btn btn-light" style="border-radius: 360px;"><img src="images/caret-down.png" alt="" srcset="" width="30" height="30"></button>

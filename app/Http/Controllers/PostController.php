@@ -100,7 +100,6 @@ class PostController extends Controller
     }
     // Phương thức điều hướng tới tab Bài Viết Của Tôi
     public function myPost() {
-
         return view('myPost',['title' => 'Bài Viết Của Tôi']);
     }
 }
