@@ -103,7 +103,7 @@ class UserController extends Controller
             if($request->all()['email'] === $value['email']){ // kiểm tra email 
                 $e++;
                 if(md5($request->all()['password']) == $value['password']){ // kiểm tra mật khẩu
-                    $_SESSION['login'] = $request->all();
+                    $_SESSION['login'] = $value;
                     return redirect('/');
                 } else {
                     echo '<script type="text/javascript"> alert("Mật khẩu không đúng.")</script>' ;
