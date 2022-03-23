@@ -24,6 +24,8 @@ Route::get('/register', function () {
 Route::resource('/login', UserController::class);
 // Xử lý đăng nhập
 Route::post('/login/checkLogin', [UserController::class, 'checkLogin'])->name('user.login');
+// Xử lý đăng ký
+Route::post('/registered', [UserController::class, 'store'])->name('user.registered');
 // xử lý đăng xuất
 Route::get('/logout', [UserController::class, 'checkLogout'])->name('user.logout');
 

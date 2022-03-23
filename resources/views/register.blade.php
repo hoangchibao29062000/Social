@@ -3,7 +3,7 @@
 <div class="container">
         <div class="login">
             <div class="card" style="width: 20rem;">
-               <form action="" method="post">
+               <form action="/registered" method="post">
                     @csrf
                    <!-- Họ tên -->
                    <div class="m-3">
@@ -28,9 +28,9 @@
                    <!-- Giới Tính -->
                    <div class="m-3">
                        <label>Giới Tính: </label>
-                    <input type="radio" name="gender">Nam
-                    <input type="radio" name="gender">Nữ
-                    <input type="radio" name="gender">Khác
+                    <input type="radio" name="gender" value="Nam">Nam
+                    <input type="radio" name="gender" value="Nữ">Nữ
+                    <input type="radio" name="gender" value="Khác">Khác
                    </div>
                    <!-- Nút Đăng ký -->
                    <button type="submit" class="btn btn-success form-control mb-3" >Đăng ký</button>

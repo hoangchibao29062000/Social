@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 session_start();
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -37,7 +38,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+        var_dump($request->all());
+        User::create([
+            'password' => md5($request->password),
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'gender' => $request->gender
+        ]);
+        return redirect('/login');
     }
 
     /**
@@ -91,20 +101,24 @@ class UserController extends Controller
         $user = User::get();
         foreach ($user as $key => $value) {
             if($request->all()['email'] === $value['email']){ // kiểm tra email 
+                $e++;
                 if(md5($request->all()['password']) == $value['password']){ // kiểm tra mật khẩu
-                    $e++; // cấm cờ
-                    $_SESSION['login'] = $request->all();
+                    $_SESSION['login'] = $value;
+                    return redirect('/');
+                } else {
+                    echo '<script type="text/javascript"> alert("Mật khẩu không đúng.")</script>' ;
                     return redirect('/');
                 }
             }
         }
         if($e == 0){
             echo '<script type="text/javascript"> alert("Email không tồn tại")</script>' ;
+            return redirect('/');
         }
     }
 
     public function checkLogout(){
-        session_destroy();
+        session_destroy(); // xoá session
         return redirect('/login');
     }
 }
