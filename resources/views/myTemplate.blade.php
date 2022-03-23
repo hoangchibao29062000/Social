@@ -58,16 +58,6 @@
 <body>
 @include('block.header')
 
-
-    <?php
-        if(!empty($_SESSION['login'])) :
-    ?>
-        <!-- Header -->
-    @include('block.header')
-    <?php
-        endif;
-    ?>
-    
         <!-- Content -->
         <div class="row" style="margin-top:90px;margin-right: 15px;">
             <div class=" bg-light col-2 col-lg-2 col-xl-2 fixed-left" style="width:1000px">
@@ -82,14 +72,6 @@
             </div>
         </div>
         
-    
-    <?php
-        if(empty($_SESSION['login'])) :
-    ?>
-        <!-- Footer -->
-    <!-- @include('block.footer') -->
-    <?php
-        endif;
-    ?>
+
 </body>
 </html>
