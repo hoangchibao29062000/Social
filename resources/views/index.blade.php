@@ -7,7 +7,7 @@
         <button class="btn btn-light " style="border-radius: 360px;"><img src="images/user.png" width="30" height="30" alt="" srcset=""></button>
         </div>
         <div class="col-9">
-          <input class="btn btn-light text-left form-control " style="border-radius: 360px;" placeholder="Hôm nay bạn thế nào?"></input>
+          <input class="btn btn-light text-left form-control " style="border-radius: 360px;" placeholder="Hôm nay bạn thế nào?">
         </div>
         <div class="col-2">
           <button class="btn btn-primary">Đăng bài</button>
@@ -139,4 +139,4 @@
     </div>
   </div>
     @endsection
-    
+
