@@ -22,4 +22,14 @@ class posts extends Model
     public function user(){
         return $this->hasOne('App\Models\User' ,'user_id','user_id');
     }
+
+    // Lấy thông tin người thích
+    public function likes(){
+        return $this->hasMany(likes::class,'post_id','post_id');
+    }
+
+    // Lấy thông tin người bình luận
+    public function comments(){
+        return $this->hasMany(comments::class,'post_id','post_id');
+    }
 }
