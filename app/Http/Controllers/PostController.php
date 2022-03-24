@@ -42,7 +42,6 @@ class PostController extends Controller
      */
     public function upPost(Request $request)
     {
-        var_dump($request->all());
         $dateNow = new DateTime();
         posts::create([
             'content' => $request->content,

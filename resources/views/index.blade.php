@@ -20,7 +20,7 @@
                         </button>
                     </div>
                     <!-- Body Modal -->
-                    <form action="/post" method="post" enctype="multipart/form">
+                    <form action="/post" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
                             <div class="row mb-2">
