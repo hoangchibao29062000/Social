@@ -6,6 +6,7 @@ session_start();
 use App\Models\posts;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -41,7 +42,6 @@ class PostController extends Controller
      */
     public function upPost(Request $request)
     {
-        var_dump($request->all());
         $dateNow = new DateTime();
         posts::create([
             'content' => $request->content,

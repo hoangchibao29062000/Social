@@ -20,7 +20,7 @@
                         </button>
                     </div>
                     <!-- Body Modal -->
-                    <form action="/post" method="post" enctype="multipart/form">
+                    <form action="/post" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-body">
                             <div class="row mb-2">
@@ -71,7 +71,7 @@
             </div>
             <div class="col-9 text-left">
                 <p class="h5"> {{$post->user->name }}</p>
-                <p class="text-secondary">{{ $post->date }}<img src="images/friends.png" width="20" height="20" alt="" srcset=""></p>
+                <p class="text-secondary">{{ $post->created_at->format('d/m_____H:i') }}<img src="images/friends.png" width="20" height="20" alt="" srcset=""></p>
             </div>
             <div class="col-2 text-right">
                 <button class="btn btn-light " style="border-radius: 360px;"><img src="images/dots.png" width="20" height="20" alt="" srcset=""></button>

@@ -34,15 +34,28 @@ class UserController extends Controller
     //Xử lý đăng ký
     public function store(Request $request)
     {
-        User::create([
-            'password' => md5($request->password),
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'address' => $request->address,
-            'gender' => $request->gender
-        ]);
-        return redirect('/login');
+        $d = 0;
+        $user = User::get(); // lấy all user
+        foreach ($user as $key => $value) {
+            if($request->all()['email'] === $value['email']){ // kiểm tra email 
+                $d++;
+            }
+        }
+        if($d == 0){
+            User::create([
+                'password' => md5($request->password),
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'gender' => $request->gender
+            ]);
+            return redirect('/login');
+        } else {
+            return redirect('/register');
+            echo '<script type="text/javascript"> alert("Email đã tồn tại")</script>' ;
+        }
+        
     }
 
     /**
