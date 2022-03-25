@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Contracts\Session\Session as Session;
+
 session_start();
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
 class UserController extends Controller
 {
     /**
@@ -99,7 +100,14 @@ class UserController extends Controller
                 if(md5($request->all()['password']) == $value['password']){ // kiểm tra mật khẩu
                     $_SESSION['login'] = $value;
                     return redirect('/');
-                } else {
+                } 
+                // if(Hash::check('password',$request->password) == $value['password']){ // kiểm tra mật khẩu
+                //     $_SESSION['login'] = $value;
+                //     Session::put('user',$value); // set
+                //     Session::get('user');
+                //     return redirect('/');
+                // }
+                else {
                     echo '<script type="text/javascript"> alert("Mật khẩu không đúng.")</script>' ;
                     return redirect('/');
                 }

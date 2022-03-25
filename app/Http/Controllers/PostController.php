@@ -16,7 +16,7 @@ class PostController extends Controller
         // Xét trường hợp đã login hay chưa
             if(!isset($_SESSION['login'])) {
                 return redirect('/login');
-            }else {
+            } else {
                 return view('index',compact('posts'),['title' => 'Trang Chủ']);
             }
         // return view('index',['title' => 'Trang Chủ']);
