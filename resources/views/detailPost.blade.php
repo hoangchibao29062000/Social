@@ -1,5 +1,5 @@
 @extends('myTemplate')
-@section('myPost')
+@section('detailPost')
 <div class="card mt-4 ml-5" style="width:70rem">
     <div class="card-body">
       <!-- Tài khoản đăng -->

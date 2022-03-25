@@ -67,14 +67,23 @@
         <!-- Tài khoản đăng -->
         <div class="row">
             <div class="col-1">
-                <a href="#" class="rounded-circle"><img src="images/{{$post->user->avatar }}" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+                @if ($_SESSION['login']->avatar == null)
+                    <a href="#" class="rounded-circle"><img src="images/user.png" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+                @else
+                    <a href="#" class="rounded-circle"><img src="images/{{$post->user->avatar }}" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+                @endif
             </div>
             <div class="col-9 text-left">
                 <p class="h5"> {{$post->user->name }}</p>
                 <p class="text-secondary">{{ $post->created_at->format('d/m_____H:i') }}<img src="images/friends.png" width="20" height="20" alt="" srcset=""></p>
             </div>
             <div class="col-2 text-right">
-                <button class="btn btn-light " style="border-radius: 360px;"><img src="images/dots.png" width="20" height="20" alt="" srcset=""></button>
+                <button class="btn btn-light dropdown-friend" style="border-radius: 360px;"><img src="images/dots.png" width="20" height="20" alt="" srcset="">
+                    <div class="dropdown-content-friend">
+                        <a class="btn btn-info">Chỉnh Sửa</a>
+                        <a class="btn btn-danger">Xóa</a>
+                    </div>
+                </button>
             </div>
         </div>
         <!-- Nội dung bài viết -->

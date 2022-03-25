@@ -36,6 +36,39 @@
                 @yield('myPost')
             </div>
             @endif
+
+            <!-- Thông Tin Bài Viết -->
+            @if ($title == "Thông Tin Bài Viết")
+            <div class="col-10 col-lg-10 col-xl-10">
+                @yield('detailPost')
+            </div>
+            @endif
+
+             <!-- Thông Tin Cá Nhân -->
+             @if ($title == "Thông Tin Cá Nhân")
+            <div class="col-10 col-lg-10 col-xl-10">
+                @yield('myInfo')
+            </div>
+            @endif
+
+            <!-- Bạn Bè -->
+            @if ($title == "Bạn Bè")
+            <div class="col-10 col-lg-10 col-xl-10">
+                @yield('myFriend')
+            </div>
+            @endif
+             <!-- Danh Sách Kết Bạn -->
+             @if ($title == "Danh Sách Kết Bạn")
+            <div class="col-10 col-lg-10 col-xl-10">
+                @yield('listAddFriend')
+            </div>
+            @endif
+             <!-- Xếp Hạng Bài Viết -->
+             @if ($title == "Xếp Hạng Bài Viết")
+            <div class="col-10 col-lg-10 col-xl-10">
+                @yield('ranking')
+            </div>
+            @endif
         </div>
     @else
         @yield('login')

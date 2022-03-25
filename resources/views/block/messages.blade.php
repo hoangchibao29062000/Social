@@ -3,7 +3,7 @@
         <p class="text-secondary font-weight-bold h5">Lời mời kết bạn</p>
     </div>
     <div class="col-6 mt-2 text-right">
-        <a href="">Xem tất cả</a>
+        <a href="/listAddFriend">Xem tất cả</a>
     </div>
     <div class="col-2">
         <button class="btn btn-light" style="border-radius: 360px;"><img src="images/user.png" width="40" height="40" alt="" srcset=""></button>

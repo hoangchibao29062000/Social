@@ -6,7 +6,7 @@
     transform: translate(-50%,-50%);
 }
 .active {
-    border-bottom: blue solid 3px;
+    border-bottom: blue solid 2px;
 }
 /* Kiểu nút Dropdown */
     .dropbtn {
@@ -18,29 +18,50 @@
         border: none;
         cursor: pointer;
     }
+    /* DROPDOWN CỦA HEADER */
+        /* Dùng trong <div> để định vị nội dung thả xuống */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
 
-    /* Dùng trong <div> để định vị nội dung thả xuống */
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    /* Nội dung thả xuống (Ẩn theo mặc định) */
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: white;
-        min-width: 200px;
-        right: 10px;
-        /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1; */
-    }
-
-    /* Liên kết bên trong danh sách thả xuống */
-   
-    /* Hiển thị menu thả xuống khi di chuột */
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
+        /* Nội dung thả xuống (Ẩn theo mặc định) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            right: 10px;
+            /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1; */
+        }
+    
+        /* Hiển thị menu thả xuống khi di chuột */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+    /* DROPDOWN CỦA DANH SACH BẠN BÈ */
+        /* Dùng trong <div> để định vị nội dung thả xuống */
+        .dropdown-friend {
+            position: relative;
+            display: inline-block;
+        }
+        /* Nội dung thả xuống (Ẩn theo mặc định) */
+        .dropdown-content-friend {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 100px;
+            right: 10px;
+            top : 30px;
+            /* /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+            /* z-index: 1; */
+        }
+    
+        /* Hiển thị menu thả xuống khi di chuột */
+        .dropdown-friend:hover .dropdown-content-friend {
+            display: block;
+        }
 
    

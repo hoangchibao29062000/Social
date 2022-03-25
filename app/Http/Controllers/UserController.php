@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Contracts\Session\Session as Session;
 
-session_start();
+// session_start();
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 class UserController extends Controller

@@ -3,7 +3,7 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
+session_start();
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,3 +32,23 @@ Route::get('/logout', [UserController::class, 'checkLogout'])->name('user.logout
 Route::post('/post', [PostController::class, 'upPost'])->name('post.upPost');
 // Điều hướng tới trang bài viết của tôi
 Route::get('/myPost', [PostController::class,'myPost'])->name('post.myPost');
+// Điều hướng tới trang thông tin cá nhân
+Route::get('/myInfo', function () {
+    return view('myInfo',['title' => 'Thông Tin Cá Nhân']);
+});
+// Điều hướng tới trang bạn bè
+Route::get('/myFriend', function () {
+    return view('myFriend',['title' => 'Bạn Bè']);
+});
+// Điều hướng tới trang bạn bè
+Route::get('/listAddFriend', function () {
+    return view('listAddFriend',['title' => 'Danh Sách Kết Bạn']);
+});
+// Điều hướng tới trang xếp hạng bài viết
+Route::get('/ranking', function () {
+    return view('ranking',['title' => 'Xếp Hạng Bài Viết']);
+});
+// Điều hướng tới trang Thông Tin Bài Viết
+Route::get('/detailPost', function () {
+    return view('detailPost',['title' => 'Thông Tin Bài Viết']);
+});
