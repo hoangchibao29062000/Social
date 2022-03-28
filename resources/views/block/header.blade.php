@@ -21,9 +21,9 @@
         <!-- Hiển thị Tên Đăng nhập -->
         <div>
           @if($_SESSION['login']->avatar == null)
-            <img src="/images/user.png" alt="" srcset="" width="40" height="40" class="rounded-circle">
+            <img src="images/user.png" alt="" srcset="" width="40" height="40" class="rounded-circle">
           @else
-            <img src="/images/<?php echo ($_SESSION['login']->avatar);  ?>" alt="" srcset="" width="40" height="40" class="rounded-circle">
+            <img src="images/avatar/<?php echo ($_SESSION['login']->avatar);  ?>" alt="" srcset="" width="40" height="40" class="rounded-circle">
           @endif
           <button class="btn btn-light" style="border-radius: 360px;">
             <?php

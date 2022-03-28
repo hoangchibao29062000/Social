@@ -12,7 +12,7 @@
                             @if($u->avatar == null)
                                 <img src="/images/user.png" alt="" srcset="" width="40" height="40" class="rounded-circle">
                             @else
-                                <img src="/images/<?php echo ($_SESSION['login']->avatar);  ?>" alt="" srcset="" width="40" height="40" class="rounded-circle">
+                                <img src="/images/avatar/<?php echo ($_SESSION['login']->avatar);  ?>" alt="" srcset="" width="40" height="40" class="rounded-circle">
                             @endif
                         </div>
                         <!-- Tên của bạn -->

@@ -138,8 +138,17 @@ class UserController extends Controller
     }
     // Chỉnh sửa thông tin người Dùng
     public function editUser(Request $request) {
+         // Xử lý hình ảnh
+            // Đường dẫn lưu hình
+            $target_dir= "images/avatar";
+            // File hình
+            $avatar =  time().'_'.$request->avatar->getClientOriginalName();
+            // Tạo đường tới folder lưu hình
+            $destinationPath =public_path($target_dir);
+            // Dẫn file tới folder
+            $request->avatar->move($destinationPath,$avatar);
         $update_user = [
-            'avatar' =>$request->avatar->getClientOriginalName(),
+            'avatar' =>$avatar,
             'name' =>$request->name,
             'email' =>$request->email,
             'phone' =>$request->phone,

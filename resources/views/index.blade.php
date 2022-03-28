@@ -5,7 +5,11 @@
     <div class="card mt-4 ml-5" style="width:62rem">
       <div class="row m-2">
         <div class="col-1">
-        <button class="btn btn-light " style="border-radius: 360px;"><img src="images/user.png" width="30" height="30" alt="" srcset=""></button>
+            @if ($_SESSION['login']->avatar == null)
+                <a href="#" class="rounded-circle"><img src="images/user.png" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+            @else
+                <a href="#" class="rounded-circle"><img src="images/avatar/<?php echo ($_SESSION['login']->avatar);  ?>" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+            @endif
         </div>
         <div class="col-11">
           <button type="button "class="btn btn-light text-left form-control" data-toggle="modal" data-target="#exampleModal" style="border-radius: 360px;">Hôm nay bạn thế nào? </button>
@@ -25,8 +29,12 @@
                         <div class="modal-body">
                             <div class="row mb-2">
                                 <!-- Avatar người tạo bài -->
-                                <div class="col-1 pt-2">
-                                    <img src="images/user.png" height="30" width="30"alt="" srcset="">
+                                <div class="col-2 pt-2">
+                                    @if ($_SESSION['login']->avatar == null)
+                                        <a href="#" class="rounded-circle"><img src="images/user.png" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+                                    @else
+                                        <a href="#" class="rounded-circle"><img src="images/avatar/<?php echo ($_SESSION['login']->avatar);  ?>" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+                                    @endif
                                 </div>
                                 <div class="col-10 text-left">
                                     <div class="row">
@@ -70,7 +78,7 @@
                 @if ($_SESSION['login']->avatar == null)
                     <a href="#" class="rounded-circle"><img src="images/user.png" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
                 @else
-                    <a href="#" class="rounded-circle"><img src="images/{{$post->user->avatar }}" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+                    <a href="#" class="rounded-circle"><img src="images/avatar/{{$post->user->avatar }}" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
                 @endif
             </div>
             <div class="col-9 text-left">
