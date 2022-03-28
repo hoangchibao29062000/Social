@@ -12,4 +12,8 @@ class Share extends Model
         'post_id_share',
         'user_id_share',
     ];
+     // Lấy thông tin người share
+     public function shares(){
+        return $this->hasMany(Share::class,'post_id_share', 'post_id');
+    }
 }
