@@ -181,7 +181,7 @@
            <div class="col-6">
                <form action="commentPost?id={{$post->post_id}}" method="post">
                     <input type="text" class="form-control" name="content" placeholder="Viết bình luận">
-               
+
            </div>
            <div class="col-3">
                <input type="file" name="image" id="">
