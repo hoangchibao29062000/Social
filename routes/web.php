@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -52,3 +53,9 @@ Route::get('/ranking', function () {
 Route::get('/detailPost', function () {
     return view('detailPost',['title' => 'Thông Tin Bài Viết']);
 });
+// Chỉnh sửa thông tin cá nhân
+Route::post('/editUser', [UserController::class, 'editUser'])->name('user.editUser');
+// Thích bài viết
+Route::get('/like',[LikeController::class, 'create']);
+// Bỏ Thích Bài Viết
+Route::get('/unlike',[LikeController::class, 'destroy']);

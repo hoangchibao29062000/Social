@@ -12,6 +12,7 @@
    </style>
 </head>
 <body>
+
     @if(isset($_SESSION['login']))
         <!-- Header -->
         @include('block.header')

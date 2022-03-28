@@ -18,7 +18,41 @@
                 </div>
                 <!-- Chỉnh Sửa Thông Tin -->
                 <div class="col-6">
-                    <button class="btn btn-primary text-right">Chỉnh Sửa Thông Tin</button>
+                    <button class="btn btn-primary text-right" data-toggle="modal" data-target="#editInfoModal">Chỉnh Sửa Thông Tin</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="editInfoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Chỉnh Sửa Thông Tin</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <!-- Body Modal -->
+                            <form action="/editUser" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="modal-body">
+                                    <label style="font-size:20px; font-weight:bold">Avatar</label> <br>
+                                    <input type="file" name="avatar"/> <br>
+                                    <label style="font-size:20px; font-weight:bold">Tên Cá Nhân</label> <br>
+                                    <input type="text" name="name" class="form-control" value="{{$_SESSION['login']->name}}"/>
+                                    <label style="font-size:20px; font-weight:bold">Email</label> <br>
+                                    <input type="email" name="email" class="form-control" value="{{$_SESSION['login']->email}}"/>
+                                    <label style="font-size:20px; font-weight:bold">Số Điện Thoại</label> <br>
+                                    <input type="text" name="phone" class="form-control" value="{{$_SESSION['login']->phone}}"/>
+                                    <label style="font-size:20px; font-weight:bold">Địa chỉ</label> <br>
+                                    <input type="text" name="address" class="form-control" value="{{$_SESSION['login']->address}}"/>
+                                   
+                                </div>
+                                <!-- Nút Submit -->
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary form-control">Đồng Ý</button>
+                                </div>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- Số bạn bè -->
                 <div class="col-6">

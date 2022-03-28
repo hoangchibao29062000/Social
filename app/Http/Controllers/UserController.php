@@ -131,9 +131,26 @@ class UserController extends Controller
             return redirect('/');
         }
     }
-
+    // Đăng Xuất
     public function checkLogout(){
         session_destroy(); // xoá session
         return redirect('/login');
+    }
+    // Chỉnh sửa thông tin người Dùng
+    public function editUser(Request $request) {
+        $update_user = [
+            'avatar' =>$request->avatar->getClientOriginalName(),
+            'name' =>$request->name,
+            'email' =>$request->email,
+            'phone' =>$request->phone,
+            'address' =>$request->address,
+        ];
+        user::where('user_id', $_SESSION['login']->user_id)->update($update_user);
+        $_SESSION['login']->name = $update_user['name'];
+        $_SESSION['login']->avatar = $update_user['avatar'];
+        $_SESSION['login']->email = $update_user['email'];
+        $_SESSION['login']->phone = $update_user['phone'];
+        $_SESSION['login']->address = $update_user['address'];
+        return redirect('/myInfo');
     }
 }
