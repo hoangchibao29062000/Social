@@ -35,7 +35,7 @@
       </div>
     </div>
   <!-- Hình của bài viết -->
-    <img src="images/{{ $post->image }}" height="500">
+    <img src="images/myPost/{{ $post->image }}" height="500">
     <hr class="text-center">
     <!-- Lượt thích -->
     <div class="row ml-3 mr-3">
