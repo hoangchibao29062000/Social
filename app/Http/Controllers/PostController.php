@@ -16,13 +16,11 @@ class PostController extends Controller
         // get posts order by created_at desc
         $posts = posts::orderBy('created_at', 'desc')->get();
         // Xét trường hợp đã login hay chưa
-            if(!isset($_SESSION['login'])) {
-                return redirect('/login');
-            } else {
-                return view('index',compact('posts'),['title' => 'Trang Chủ']);
-            }
-        // return view('index',['title' => 'Trang Chủ']);
-        // return view('login',['title' => 'Đăng nhập']);
+        if(!isset($_SESSION['login'])) {
+            return redirect('/login');
+        } else {
+            return view('index',compact('posts'),['title' => 'Trang Chủ']);
+        }
     }
 
     /**

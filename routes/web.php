@@ -38,9 +38,7 @@ Route::get('/myInfo', function () {
     return view('myInfo',['title' => 'Thông Tin Cá Nhân']);
 });
 // Điều hướng tới trang bạn bè
-Route::get('/myFriend', function () {
-    return view('myFriend',['title' => 'Bạn Bè']);
-});
+Route::get('/myFriend', [UserController::class, 'getAllUser'])->name('user.getAllUser');
 // Điều hướng tới trang bạn bè
 Route::get('/listAddFriend', function () {
     return view('listAddFriend',['title' => 'Danh Sách Kết Bạn']);

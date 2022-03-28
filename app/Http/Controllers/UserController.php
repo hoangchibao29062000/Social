@@ -7,7 +7,6 @@ use Illuminate\Contracts\Session\Session as Session;
 
 // session_start();
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     /**
@@ -17,10 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::get();
         return view('login',['title' => 'Đăng nhập']);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -48,7 +45,7 @@ class UserController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'address' => $request->address,
-                'gender' => $request->gender
+                'gender' => $request->gender,
             ]);
             return redirect('/login');
         } else {
@@ -135,5 +132,11 @@ class UserController extends Controller
     public function checkLogout(){
         session_destroy(); // xoá session
         return redirect('/login');
+    }
+
+    public function getAllUser()
+    {
+        $user = User::get();
+        return view('myFriend',compact('user'),['title' => 'Bạn Bè']);
     }
 }
