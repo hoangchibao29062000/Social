@@ -25,10 +25,10 @@
                                 <p>{{$friend->created_at->format('d/m__H:i')}}</p>
                             </div>
                             <div class="col-6">
-                                <button class="btn btn-primary form-control">Xác Nhận</button>
+                                <a class="btn btn-primary form-control" href="/submitFriend?id={{$friend->id}}">Xác Nhận</a>
                             </div>
                             <div class="col-6">
-                                <button class="btn btn-secondary form-control">Xóa</button>
+                                <a class="btn btn-secondary form-control" href="/deleteInviteFriend?id={{$friend->id}}">Xóa</a>
                             </div>
                         </div>
                     </div>

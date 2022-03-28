@@ -27,7 +27,7 @@
                                 <a href="/submitFriend?id={{$friend->id}}" class="btn btn-primary form-control">Xác Nhận</a>
                             </div>
                             <div class="col-6">
-                                <button class="btn btn-secondary form-control">Xóa</button>
+                                <a href="/deleteInviteFriend?id={{$friend->id}}" class="btn btn-secondary form-control">Xóa</a>
                             </div>
                         </div>
                     </div>
