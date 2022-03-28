@@ -39,4 +39,5 @@ class posts extends Model
         return $this->hasMany(Share::class,'post_id_share', 'post_id');
     }
 
+
 }

@@ -68,6 +68,41 @@
         <hr width="100%">
       </div>
   </div>
+
+  {{-- get shares--}}
+    @foreach ($shares as $share)
+        <div class="card mt-4 ml-5" style="width:62rem">
+            <div class="row m-2">
+                <div class="col-1">
+                    @if ($share->user->avatar == null)
+                        <a href="#" class="rounded-circle"><img src="images/user.png" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+                    @else
+                        <a href="#" class="rounded-circle"><img src="images/avatar/<?php echo ($share->user->avatar);  ?>" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+                    @endif
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="h4" href="#" class="text-left">{{$share->user->name}}</label>
+                                    <label>Shared at {{ $share->created_at->format('H:i__d/m') }}</label>
+                                </div>
+                                <div class="col-12">
+                                    <label href="#" class="text-left">{{$share->post->content}}</label>
+                                </div>
+                                <div class="col-12">
+                                    <img src="images/myPost/{{$share->post->image}}" alt="" srcset="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+
+
   <!-- NƠI XUẤT BÀI VIẾT -->
   @foreach ($posts as $post)
   <div class="card mt-4 ml-5" style="width:62rem">
@@ -146,9 +181,9 @@
                             </a>
                         @else
                             <?php $tmp++; ?>
-                        @endif    
+                        @endif
                     @endforeach
-                    <?php 
+                    <?php
                     if($tmp == $likes->count()) :
                     ?>
                     <a href="/like?id={{$post->post_id}}">
@@ -210,7 +245,7 @@
                         <img src="images/user.png" height="40" width="40" alt="">
                     @else
                         <img src="images/avatar/{{$comment->user->avatar}}" height="40" width="40" alt="">
-                    @endif    
+                    @endif
                     </div>
                     <div class="col-10">
                         <label class="h6">{{$comment->user->name}}</label>

@@ -25,7 +25,8 @@ class PostController extends Controller
             if(!isset($_SESSION['login'])) {
                 return redirect('/login');
             } else {
-                return view('index',compact('posts','likes','comments','shares'),['title' => 'Trang Chủ']);
+
+                return view('index',compact('posts','likes','comments', 'shares'),['title' => 'Trang Chủ']);
             }
         // return view('index',['title' => 'Trang Chủ']);
         // return view('login',['title' => 'Đăng nhập']);
@@ -130,6 +131,9 @@ class PostController extends Controller
         $posts = posts::where('user_id', $id)->orderBy('created_at', 'desc')->get();
         $likes = likes::get();
         $comments =comments::get();
-        return view('myPost', compact('posts','likes','comments'), ['title' => 'Bài Viết Của Tôi']);
+        $shares = Share::orderBy('created_at', 'desc')->get();
+        return view('myPost', compact('posts','likes','comments', 'shares'), ['title' => 'Bài Viết Của Tôi']);
     }
+
+    // merge table posts and shares
 }
