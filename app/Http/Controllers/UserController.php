@@ -141,8 +141,8 @@ class UserController extends Controller
     public function getAllUser()
     {
         $friends = Friends::get();
-        $user = User::get();
-        return view('myFriend',compact('user','friends'),['title' => 'Bạn Bè']);
+        $users = User::get();
+        return view('myFriend',compact('users','friends'),['title' => 'Bạn Bè']);
     }
     // Chỉnh sửa thông tin người Dùng
     public function editUser(Request $request) {
