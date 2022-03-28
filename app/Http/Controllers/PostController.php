@@ -13,7 +13,8 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = posts::get();
+        // get posts order by created_at desc
+        $posts = posts::orderBy('created_at', 'desc')->get();
         // Xét trường hợp đã login hay chưa
         if(!isset($_SESSION['login'])) {
             return redirect('/login');
@@ -50,6 +51,7 @@ class PostController extends Controller
         ]);
         return redirect('/');
     }
+
 
     /**
      * Display the specified resource.
@@ -103,6 +105,9 @@ class PostController extends Controller
     }
     // Phương thức điều hướng tới tab Bài Viết Của Tôi
     public function myPost() {
-        return view('myPost',['title' => 'Bài Viết Của Tôi']);
+        $id = $_SESSION['login']->user_id;
+        // get posts by id order by created_at desc
+        $posts = posts::where('user_id', $id)->orderBy('created_at', 'desc')->get();
+        return view('myPost', compact('posts'), ['title' => 'Bài Viết Của Tôi']);
     }
 }
