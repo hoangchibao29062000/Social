@@ -5,7 +5,11 @@
     <div class="card mt-4 ml-5" style="width:62rem">
       <div class="row m-2">
         <div class="col-1">
-        <button class="btn btn-light " style="border-radius: 360px;"><img src="images/user.png" width="30" height="30" alt="" srcset=""></button>
+            @if ($_SESSION['login']->avatar == null)
+                <a href="#" class="rounded-circle"><img src="images/user.png" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+            @else
+                <a href="#" class="rounded-circle"><img src="images/avatar/<?php echo ($_SESSION['login']->avatar);  ?>" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+            @endif
         </div>
         <div class="col-11">
           <button type="button "class="btn btn-light text-left form-control" data-toggle="modal" data-target="#exampleModal" style="border-radius: 360px;">Hôm nay bạn thế nào? </button>
@@ -25,8 +29,12 @@
                         <div class="modal-body">
                             <div class="row mb-2">
                                 <!-- Avatar người tạo bài -->
-                                <div class="col-1 pt-2">
-                                    <img src="images/user.png" height="30" width="30"alt="" srcset="">
+                                <div class="col-2 pt-2">
+                                    @if ($_SESSION['login']->avatar == null)
+                                        <a href="#" class="rounded-circle"><img src="images/user.png" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+                                    @else
+                                        <a href="#" class="rounded-circle"><img src="images/avatar/<?php echo ($_SESSION['login']->avatar);  ?>" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+                                    @endif
                                 </div>
                                 <div class="col-10 text-left">
                                     <div class="row">
@@ -70,7 +78,7 @@
                 @if ($_SESSION['login']->avatar == null)
                     <a href="#" class="rounded-circle"><img src="images/user.png" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
                 @else
-                    <a href="#" class="rounded-circle"><img src="images/{{$post->user->avatar }}" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+                    <a href="#" class="rounded-circle"><img src="images/avatar/{{$post->user->avatar }}" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
                 @endif
             </div>
             <div class="col-9 text-left">
@@ -92,7 +100,7 @@
             </div>
         </div>
         <!-- Hình của bài viết -->
-        <img src="images/{{ $post->image }}" height="500">
+        <img src="images/myPost/{{ $post->image }}" height="500">
         <hr class="text-center">
         <!-- Lượt thích -->
         <div class="row ml-3 mr-3">
@@ -115,10 +123,33 @@
         <div class="text-center p-auto m-auto" style="border-top:1px solid; width:70%" >
             <div class="row">
                 <div class="col-4 ">
-                    <button class="btn btn-light">
-                        <img src="images/like-white.png" width="25" height="25" alt="" srcset="">
-                        Thích
-                    </button>
+                    <?php
+                        $tmp = 0;
+                    ?>
+                @foreach($likes as $like)
+                        @if ($like->user_id == $_SESSION['login']->user_id)
+                        <a href="/unlike?id={{$post->post_id}}">
+                                <button class="btn btn-light">
+                            <img src="images/like.png" width="25" height="25" alt="" srcset="">
+                            Bỏ Thích
+                                </button>
+                            </a>
+                        @else
+                            <?php $tmp++; ?>
+                        @endif    
+                    @endforeach
+                    <?php 
+                    if($tmp == $likes->count()) :
+                    ?>
+                    <a href="/like?id={{$post->post_id}}">
+                                <button class="btn btn-light">
+                            <img src="images/like-white.png" width="25" height="25" alt="" srcset="">
+                            Thích
+                                </button>
+                            </a>
+                    <?php
+                        endif;
+                    ?>
                 </div>
                 <div class="col-4">
                     <button class="btn btn-light">
@@ -134,6 +165,12 @@
                 </div>
             </div>
         </div>
+        <!-- Nơi Xuất bình luận -->
+       <div class="row container">
+           <div class="col-1">
+               <img src="images/user.png" alt="" srcset="" height="40" width="40"/>
+           </div>
+       </div>
 </div>
 
 @endforeach

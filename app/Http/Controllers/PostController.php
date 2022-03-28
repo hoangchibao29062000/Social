@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 // session_start();
 use App\Models\posts;
+use App\Models\likes;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -13,14 +14,16 @@ class PostController extends Controller
 
     public function index()
     {
-        // get posts order by created_at desc
         $posts = posts::orderBy('created_at', 'desc')->get();
+        $likes = likes::get();
         // Xét trường hợp đã login hay chưa
-        if(!isset($_SESSION['login'])) {
-            return redirect('/login');
-        } else {
-            return view('index',compact('posts'),['title' => 'Trang Chủ']);
-        }
+            if(!isset($_SESSION['login'])) {
+                return redirect('/login');
+            } else {
+                return view('index',compact('posts','likes'),['title' => 'Trang Chủ']);
+            }
+        // return view('index',['title' => 'Trang Chủ']);
+        // return view('login',['title' => 'Đăng nhập']);
     }
 
     /**
@@ -41,17 +44,25 @@ class PostController extends Controller
      */
     public function upPost(Request $request)
     {
+        // Xử lý hình ảnh
+            // Đường dẫn lưu hình
+            $target_dir= "images/myPost";
+            // File hình
+            $image =  time().'_'.$request->image->getClientOriginalName();
+            // Tạo đường tới folder lưu hình
+            $destinationPath =public_path($target_dir);
+            // Dẫn file tới folder
+            $request->image->move($destinationPath,$image);
         $dateNow = new DateTime();
         posts::create([
             'content' => $request->content,
-            'image' => $request->image,
+            'image' => $image,
             'role' => $request->role,
             'user_id' => $_SESSION['login']->user_id,
             'date' => $dateNow
         ]);
         return redirect('/');
     }
-
 
     /**
      * Display the specified resource.

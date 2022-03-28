@@ -15,7 +15,7 @@
           <button class="btn btn-light" style="border-radius: 360px;"><img src="images/user.png" width="30" height="30" alt="" srcset=""></button>
         </div>
         <div class="col-9 text-left">
-          <p class="h5">{{ $post->name }}</p>
+          <p class="h5">{{ $post->user->name }}</p>
           <p class="text-secondary">{{ $post->created_at->format('d/m_____H:i') }} <img src="images/friends.png" width="20" height="20" alt="" srcset=""></p>
         </div>
         <div class="col-2 text-right">
@@ -23,7 +23,8 @@
             <img src="images/dots.png" width="20" height="20" alt="" srcset="">
                 <div class="dropdown-content-friend">
                   <a class="btn btn-info">Chỉnh Sửa</a>
-                    <a class="btn btn-danger">Xóa</a>
+                    <a class="btn btn-danger" href="/deletePost?id={{ $post->post_id }}">Xóa</a>
+
                 </div>
             </button>
         </div>
@@ -34,19 +35,23 @@
       </div>
     </div>
   <!-- Hình của bài viết -->
-    <img src="images/{{ $post->image }}" height="500">
+    <img src="images/myPost/{{ $post->image }}" height="500">
     <hr class="text-center">
     <!-- Lượt thích -->
     <div class="row ml-3 mr-3">
+        @if($post->likes->count() > 0 )
       <div class="col-10">
         <p>
           <img src="images/like.png" width="20" height="20" alt="" srcset="">
             <span>{{ $post->likes->count() }}</span>
       </p>
       </div>
+        @endif
+        @if($post->likes->count() > 0 )
       <div class="col-2 text-right">
         <p>{{ $post->comments->count() }} bình luận</p>
       </div>
+        @endif
     </div>
     <!-- Nút Like, Bình Luận, Chia Sẻ -->
     <div class="text-center p-auto m-auto" style="border-top:1px solid; width:70%" >

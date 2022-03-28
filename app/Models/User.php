@@ -19,7 +19,8 @@ class User extends Authenticatable
         'password',
         'phone',
         'address',
-        'gender'
+        'gender',
+        'avatar'
     ];
 
     // Loại bỏ những thông tin không cần

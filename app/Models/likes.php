@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class likes extends Model
 {
-    use HasFactory;
+    use HasFactory;// Lấy những thông tin cần
+    protected $fillable = [
+        'post_id',
+        'user_id',
+    ];
 }
