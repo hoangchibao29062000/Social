@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Models\posts;
 use Illuminate\Support\Facades\Route;
 session_start();
 /*
@@ -14,7 +15,7 @@ session_start();
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Điềug c hướng tới tranhủ  
+// Điềug c hướng tới tranhủ
 Route::resource('/', PostController::class);
 // Điều hướng tới trang đăng Ký
 Route::get('/register', function () {
@@ -52,3 +53,7 @@ Route::get('/ranking', function () {
 Route::get('/detailPost', function () {
     return view('detailPost',['title' => 'Thông Tin Bài Viết']);
 });
+
+Route::get('deletePost', [PostController::class, 'delete']);
+
+

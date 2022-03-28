@@ -42,7 +42,7 @@
         {{$_SESSION['login']->phone}}
     </p>
     <p style="font-size:20px">
-        @if ($_SESSION['login']->gender== 'Nam')
+        @if ($_SESSION['login']->gender== 'Nam' || $_SESSION['login']->gender== 'nam')
             <img src="images/myInfo/mars.png" width="40" height="40" alt="" srcset="">
             {{$_SESSION['login']->gender}}
         @else

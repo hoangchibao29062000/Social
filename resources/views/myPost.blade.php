@@ -23,7 +23,8 @@
             <img src="images/dots.png" width="20" height="20" alt="" srcset="">
                 <div class="dropdown-content-friend">
                   <a class="btn btn-info">Chỉnh Sửa</a>
-                    <a class="btn btn-danger">Xóa</a>
+                    <a class="btn btn-danger" href="/deletePost?id={{ $post->post_id }}">Xóa</a>
+
                 </div>
             </button>
         </div>
@@ -38,15 +39,19 @@
     <hr class="text-center">
     <!-- Lượt thích -->
     <div class="row ml-3 mr-3">
+        @if($post->likes->count() > 0 )
       <div class="col-10">
         <p>
           <img src="images/like.png" width="20" height="20" alt="" srcset="">
             <span>{{ $post->likes->count() }}</span>
       </p>
       </div>
+        @endif
+        @if($post->likes->count() > 0 )
       <div class="col-2 text-right">
         <p>{{ $post->comments->count() }} bình luận</p>
       </div>
+        @endif
     </div>
     <!-- Nút Like, Bình Luận, Chia Sẻ -->
     <div class="text-center p-auto m-auto" style="border-top:1px solid; width:70%" >

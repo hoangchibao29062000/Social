@@ -33,4 +33,5 @@ class posts extends Model
     public function comments(){
         return $this->hasMany(comments::class,'post_id','post_id');
     }
+
 }

@@ -80,7 +80,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -101,9 +101,20 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        // $id = $_GET['id'];
+        // $post = posts::find($id);
+        // $post->delete();
+        // return redirect('/myPost');
+    }
+    public function delete()
+    {
+        posts::where([
+            'post_id'=>$_GET['id'],
+            'user_id'=>$_SESSION['login']->user_id,
+        ])->delete();
+        return redirect('/myPost');
     }
     // Phương thức điều hướng tới tab Bài Viết Của Tôi
     public function myPost() {
