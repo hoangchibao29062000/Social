@@ -123,6 +123,12 @@
                     <p>{{ $post->comments->count() }} bình luận</p>
                 </div>
                 @endif
+
+                @if($post->shares->count() > 0 )
+                <div class="col-2 text-right">
+                    <p>{{ $post->shares->count() }} Luợt chia sẻ</p>
+                </div>
+                @endif
             </div>
         <!-- Nút Like, Bình Luận, Chia Sẻ -->
         <div class="text-center p-auto m-auto" style="border-top:1px solid; width:70%" >
@@ -141,9 +147,9 @@
                             </a>
                         @else
                             <?php $tmp++; ?>
-                        @endif    
+                        @endif
                     @endforeach
-                    <?php 
+                    <?php
                     if($tmp == $likes->count()) :
                     ?>
                     <a href="/like?id={{$post->post_id}}">
@@ -163,10 +169,12 @@
                     </button>
                 </div>
                 <div class="col-3">
-                    <button class="btn btn-light">
-                        <img src="images/share.png" width="25" height="25" alt="" srcset="">
-                        Chia Sẻ
-                    </button>
+                    <a href="/share?id={{$post->post_id}}">
+                        <button class="btn btn-light">
+                            <img src="images/share.png" width="25" height="25" alt="" srcset="">
+                            Chia Sẻ
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
