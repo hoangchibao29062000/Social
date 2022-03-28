@@ -170,6 +170,18 @@
            <div class="col-1">
                <img src="images/user.png" alt="" srcset="" height="40" width="40"/>
            </div>
+           <div class="col-6">
+               <form action="commentPost?id={{$post->post_id}}" method="post">
+                    <input type="text" class="form-control" name="content" placeholder="Viết bình luận">
+               
+           </div>
+           <div class="col-3">
+               <input type="file" name="image" id="">
+           </div>
+           <div class="col-2">
+               <button type="submit" class="btn btn-primary">Xác Nhận</button>
+           </div>
+           </form>
        </div>
 </div>
 

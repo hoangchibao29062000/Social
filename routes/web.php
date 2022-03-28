@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
@@ -60,3 +61,5 @@ Route::post('/editUser', [UserController::class, 'editUser'])->name('user.editUs
 Route::get('/like',[LikeController::class, 'create']);
 // Bỏ Thích Bài Viết
 Route::get('/unlike',[LikeController::class, 'destroy']);
+//Bình Luận Bài Viết
+Route::get('/commentPost',[CommentController::class, 'create']);

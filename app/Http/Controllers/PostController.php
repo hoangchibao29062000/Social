@@ -119,6 +119,7 @@ class PostController extends Controller
         $id = $_SESSION['login']->user_id;
         // get posts by id order by created_at desc
         $posts = posts::where('user_id', $id)->orderBy('created_at', 'desc')->get();
-        return view('myPost', compact('posts'), ['title' => 'Bài Viết Của Tôi']);
+        $likes = likes::get();
+        return view('myPost', compact('posts','likes'), ['title' => 'Bài Viết Của Tôi']);
     }
 }
