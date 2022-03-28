@@ -3,6 +3,7 @@
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ShareController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 session_start();
@@ -16,7 +17,7 @@ session_start();
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Điềug c hướng tới tranhủ  
+// Điềug c hướng tới tranhủ
 Route::resource('/', PostController::class);
 // Điều hướng tới trang đăng Ký
 Route::get('/register', function () {
@@ -60,3 +61,5 @@ Route::post('/editUser', [UserController::class, 'editUser'])->name('user.editUs
 Route::get('/like',[LikeController::class, 'create']);
 // Bỏ Thích Bài Viết
 Route::get('/unlike',[LikeController::class, 'destroy']);
+// share bài viết
+Route::get('/share',[ShareController::class, 'share']);

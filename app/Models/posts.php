@@ -34,4 +34,9 @@ class posts extends Model
         return $this->hasMany(comments::class,'post_id','post_id');
     }
 
+    // Lấy thông tin người share
+    public function shares(){
+        return $this->hasMany(Share::class,'post_id_share', 'post_id');
+    }
+
 }
