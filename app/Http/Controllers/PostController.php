@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 // session_start();
+
+use App\Models\comments;
 use App\Models\posts;
 use App\Models\likes;
 use DateTime;
@@ -16,11 +18,12 @@ class PostController extends Controller
     {
         $posts = posts::orderBy('created_at', 'desc')->get();
         $likes = likes::get();
+        $comments = comments::orderBy('created_at', 'desc')->get();
         // Xét trường hợp đã login hay chưa
             if(!isset($_SESSION['login'])) {
                 return redirect('/login');
             } else {
-                return view('index',compact('posts','likes'),['title' => 'Trang Chủ']);
+                return view('index',compact('posts','likes','comments'),['title' => 'Trang Chủ']);
             }
         // return view('index',['title' => 'Trang Chủ']);
         // return view('login',['title' => 'Đăng nhập']);
@@ -44,6 +47,7 @@ class PostController extends Controller
      */
     public function upPost(Request $request)
     {
+        if($request->image != null) {
         // Xử lý hình ảnh
             // Đường dẫn lưu hình
             $target_dir= "images/myPost";
@@ -53,6 +57,9 @@ class PostController extends Controller
             $destinationPath =public_path($target_dir);
             // Dẫn file tới folder
             $request->image->move($destinationPath,$image);
+        }else{
+            $image = null;
+        }
         $dateNow = new DateTime();
         posts::create([
             'content' => $request->content,

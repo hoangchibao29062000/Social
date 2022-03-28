@@ -62,4 +62,4 @@ Route::get('/like',[LikeController::class, 'create']);
 // Bỏ Thích Bài Viết
 Route::get('/unlike',[LikeController::class, 'destroy']);
 //Bình Luận Bài Viết
-Route::get('/commentPost',[CommentController::class, 'create']);
+Route::post('/commentPost',[CommentController::class, 'create']);
