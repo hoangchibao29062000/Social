@@ -75,7 +75,7 @@
         <!-- Tài khoản đăng -->
         <div class="row">
             <div class="col-1">
-                @if ($_SESSION['login']->avatar == null)
+                @if ($post->user->avatar == null)
                     <a href="#" class="rounded-circle"><img src="images/user.png" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
                 @else
                     <a href="#" class="rounded-circle"><img src="images/avatar/{{$post->user->avatar }}" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
@@ -123,12 +123,6 @@
                     <p>{{ $post->comments->count() }} bình luận</p>
                 </div>
                 @endif
-
-                @if($post->shares->count() > 0 )
-                <div class="col-2 text-right">
-                    <p>{{ $post->shares->count() }} Luợt chia sẻ</p>
-                </div>
-                @endif
             </div>
         <!-- Nút Like, Bình Luận, Chia Sẻ -->
         <div class="text-center p-auto m-auto" style="border-top:1px solid; width:70%" >
@@ -138,7 +132,7 @@
                         $tmp = 0;
                     ?>
                 @foreach($likes as $like)
-                        @if ($like->user_id ==$post->user_id && $like->post_id ==$post->post_id)
+                        @if ($like->user_id ==$_SESSION['login']->user_id && $like->post_id ==$post->post_id)
                         <a href="/unlike?id={{$post->post_id}}">
                                 <button class="btn btn-light">
                             <img src="images/like.png" width="25" height="25" alt="" srcset="">
@@ -147,9 +141,9 @@
                             </a>
                         @else
                             <?php $tmp++; ?>
-                        @endif
+                        @endif    
                     @endforeach
-                    <?php
+                    <?php 
                     if($tmp == $likes->count()) :
                     ?>
                     <a href="/like?id={{$post->post_id}}">
@@ -169,12 +163,10 @@
                     </button>
                 </div>
                 <div class="col-3">
-                    <a href="/share?id={{$post->post_id}}">
-                        <button class="btn btn-light">
-                            <img src="images/share.png" width="25" height="25" alt="" srcset="">
-                            Chia Sẻ
-                        </button>
-                    </a>
+                    <button class="btn btn-light">
+                        <img src="images/share.png" width="25" height="25" alt="" srcset="">
+                        Chia Sẻ
+                    </button>
                 </div>
             </div>
         </div>
@@ -207,7 +199,11 @@
                 @if($comment->post_id == $post->post_id)
                 <div class="row">
                     <div class="col-1">
+                    @if($comment->user->avatar == null)
+                        <img src="images/user.png" height="40" width="40" alt="">
+                    @else
                         <img src="images/avatar/{{$comment->user->avatar}}" height="40" width="40" alt="">
+                    @endif    
                     </div>
                     <div class="col-10">
                         <label class="h6">{{$comment->user->name}}</label>
