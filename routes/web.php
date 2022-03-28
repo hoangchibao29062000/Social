@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FriendController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,8 @@ Route::get('/myInfo', function () {
 });
 // Điều hướng tới trang bạn bè
 Route::get('/myFriend', [UserController::class, 'getAllUser'])->name('user.getAllUser');
+// xử lý submit kết bạn
+Route::get('/madefriend', [FriendController::class, 'madeFriend'])->name('friend.madeFriend');
 // Điều hướng tới trang bạn bè
 Route::get('/listAddFriend', function () {
     return view('listAddFriend',['title' => 'Danh Sách Kết Bạn']);

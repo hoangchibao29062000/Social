@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Friends;
 use App\Models\User;
 use Illuminate\Contracts\Session\Session as Session;
 
@@ -136,7 +137,8 @@ class UserController extends Controller
 
     public function getAllUser()
     {
+        $friends = Friends::get();
         $user = User::get();
-        return view('myFriend',compact('user'),['title' => 'Bạn Bè']);
+        return view('myFriend',compact('user','friends'),['title' => 'Bạn Bè']);
     }
 }
