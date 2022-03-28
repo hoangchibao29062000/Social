@@ -140,7 +140,7 @@ class UserController extends Controller
 
     public function getAllUser()
     {
-        $friends = Friends::get();
+        $friends = Friends::orderBy('created_at', 'desc')->get();
         $users = User::get();
         return view('myFriend',compact('users','friends'),['title' => 'Bạn Bè']);
     }

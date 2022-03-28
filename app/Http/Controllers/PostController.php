@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 // session_start();
 
 use App\Models\comments;
+use App\Models\Friends;
 use App\Models\posts;
 use App\Models\likes;
 use App\Models\Share;
@@ -21,11 +22,12 @@ class PostController extends Controller
         $likes = likes::get();
         $comments = comments::orderBy('created_at', 'desc')->get();
         $shares = Share::orderBy('created_at', 'desc')->get();
+        $friends = Friends::orderBy('created_at', 'desc')->get();
         // Xét trường hợp đã login hay chưa
             if(!isset($_SESSION['login'])) {
                 return redirect('/login');
             } else {
-                return view('index',compact('posts','likes','comments','shares'),['title' => 'Trang Chủ']);
+                return view('index',compact('posts','likes','comments','shares','friends'),['title' => 'Trang Chủ']);
             }
         // return view('index',['title' => 'Trang Chủ']);
         // return view('login',['title' => 'Đăng nhập']);

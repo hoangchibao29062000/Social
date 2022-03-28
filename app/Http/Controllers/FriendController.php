@@ -92,4 +92,20 @@ class FriendController extends Controller
         ]);
         return redirect('/myFriend');
     }
+    // Xóa lời mời kết bạn
+    public function deleteInviteFriend() {
+        friends::where([
+            'id'=>$_GET['id'],
+        ])->delete();
+        return redirect('/myFriend');
+    }
+    // Xử lý đồng ý kết Bạn
+    public function submitFriend() {
+        friends::where([
+            'id'=>$_GET['id'],
+        ])->update([
+            'role'=>2
+        ]);
+        return redirect('/myInfo');
+    }
 }

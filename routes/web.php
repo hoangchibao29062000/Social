@@ -6,6 +6,8 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ShareController;
 use App\Http\Controllers\UserController;
+use App\Models\Friends;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 session_start();
 /*
@@ -38,16 +40,23 @@ Route::post('/post', [PostController::class, 'upPost'])->name('post.upPost');
 Route::get('/myPost', [PostController::class,'myPost'])->name('post.myPost');
 // Điều hướng tới trang thông tin cá nhân
 Route::get('/myInfo', function () {
-    return view('myInfo',['title' => 'Thông Tin Cá Nhân']);
+    $friends = Friends::orderBy('created_at', 'desc')->get();
+    return view('myInfo',compact('friends',),['title' => 'Thông Tin Cá Nhân']);
 });
 // Điều hướng tới trang bạn bè
 Route::get('/myFriend', [UserController::class, 'getAllUser'])->name('user.getAllUser');
-// xử lý submit kết bạn
+// xử lý gởi lời kết bạn
 Route::get('/madefriend', [FriendController::class, 'madeFriend'])->name('friend.madeFriend');
+// xử lý đồng ý kết bạn
+Route::get('/submitFriend', [FriendController::class, 'submitFriend'])->name('friend.submitFriend');
 // Điều hướng tới trang bạn bè
 Route::get('/listAddFriend', function () {
-    return view('listAddFriend',['title' => 'Danh Sách Kết Bạn']);
+    $friends = Friends::orderBy('created_at', 'desc')->get();
+    $users = User::get();
+    return view('listAddFriend',compact('friends','users'),['title' => 'Danh Sách Kết Bạn']);
 });
+// Điều hướng xóa lời mời kết Bạn
+Route::get('deleteInviteFriend',[FriendController::class, 'deleteInviteFriend'])->name('friend.deleteInviteFriend');
 // Điều hướng tới trang xếp hạng bài viết
 Route::get('/ranking', function () {
     return view('ranking',['title' => 'Xếp Hạng Bài Viết']);
