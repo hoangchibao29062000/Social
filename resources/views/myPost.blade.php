@@ -55,27 +55,52 @@
     </div>
     <!-- Nút Like, Bình Luận, Chia Sẻ -->
     <div class="text-center p-auto m-auto" style="border-top:1px solid; width:70%" >
-      <div class="row">
-        <div class="col-4 ">
-            <button class="btn btn-light">
-            <img src="images/like-white.png" width="25" height="25" alt="" srcset="">
-            Thích
-            </button>
+            <div class="row">
+              <!-- Thích -->
+                <div class="col-4 ">
+                    <?php
+                        $tmp = 0;
+                    ?>
+                @foreach($likes as $like)
+                        @if ($like->user_id == $_SESSION['login']->user_id)
+                        <a href="/unlike?id={{$post->post_id}}">
+                                <button class="btn btn-light">
+                            <img src="images/like.png" width="25" height="25" alt="" srcset="">
+                            Bỏ Thích
+                                </button>
+                            </a>
+                        @else
+                            <?php $tmp++; ?>
+                        @endif    
+                    @endforeach
+                    <?php 
+                    if($tmp == $likes->count()) :
+                    ?>
+                    <a href="/like?id={{$post->post_id}}">
+                                <button class="btn btn-light">
+                            <img src="images/like-white.png" width="25" height="25" alt="" srcset="">
+                            Thích
+                                </button>
+                            </a>
+                    <?php
+                        endif;
+                    ?>
+                </div>
+                <!-- Bình Luận -->
+                <div class="col-4">
+                    <button class="btn btn-light">
+                        <img src="images/message.png" width="25" height="25" alt="" srcset="">
+                        Bình Luận
+                    </button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-light">
+                        <img src="images/share.png" width="25" height="25" alt="" srcset="">
+                        Chia Sẻ
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="col-4">
-            <button class="btn btn-light">
-            <img src="images/message.png" width="25" height="25" alt="" srcset="">
-            Bình Luận
-            </button>
-        </div>
-        <div class="col-3">
-            <button class="btn btn-light">
-            <img src="images/share.png" width="25" height="25" alt="" srcset="">
-            Chia Sẻ
-            </button>
-        </div>
-      </div>
-    </div>
   </div>
     @endforeach
 @endif

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
@@ -63,3 +64,5 @@ Route::get('/like',[LikeController::class, 'create']);
 Route::get('/unlike',[LikeController::class, 'destroy']);
 // share bài viết
 Route::get('/share',[ShareController::class, 'share']);
+//Bình Luận Bài Viết
+Route::get('/commentPost',[CommentController::class, 'create']);
