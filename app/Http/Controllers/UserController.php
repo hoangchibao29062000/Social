@@ -146,6 +146,7 @@ class UserController extends Controller
     }
     // Chỉnh sửa thông tin người Dùng
     public function editUser(Request $request) {
+        if($request->avatar != null) {
          // Xử lý hình ảnh
             // Đường dẫn lưu hình
             $target_dir= "images/avatar";
@@ -155,6 +156,9 @@ class UserController extends Controller
             $destinationPath =public_path($target_dir);
             // Dẫn file tới folder
             $request->avatar->move($destinationPath,$avatar);
+        }else{
+            $avatar=null;
+        }
         $update_user = [
             'avatar' =>$avatar,
             'name' =>$request->name,

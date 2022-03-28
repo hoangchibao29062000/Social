@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id('cmt_id');
             $table->string('content');
+            $table->string('image');
             $table->date('date_cmt');
             $table->timestamps();
         });

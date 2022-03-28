@@ -22,12 +22,32 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        comments::create([
-            'post_id'=>$_GET['id'],
-            'user_id'=>$_SESSION['login']->user_id,
-        ]);
+        if($request->image != null) {
+            // Xử lý hình ảnh
+            // Đường dẫn lưu hình
+            $target_dir= "images/myComment";
+            // File hình
+            $image =  time().'_'.$request->image->getClientOriginalName();
+            // Tạo đường tới folder lưu hình
+            $destinationPath =public_path($target_dir);
+            // Dẫn file tới folder
+            $request->image->move($destinationPath,$image);
+        }else{
+            $image = null;
+        }
+        
+            $dateNow = new DateTime();
+            // Xử lý đưa lên Database
+            comments::create([
+                'post_id'=>$_GET['id'],
+                'user_id'=>$_SESSION['login']->user_id,
+                'content'=>$request->content,
+                'image'=>$image,
+                'date_cmt' =>$dateNow,
+            ]); 
+            return redirect('/');
     }
 
     /**
