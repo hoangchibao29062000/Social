@@ -186,18 +186,16 @@
                     <a href="#" class="rounded-circle"><img src="images/avatar/<?php echo ($_SESSION['login']->avatar);  ?>" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
                 @endif
            </div>
-           <div class="col-6">
+           <div class="col-7">
                <form action="/commentPost?id={{$post->post_id}}" method="post" enctype="multipart/form-data">
                @csrf
                     <input type="text" class="form-control" name="content" placeholder="Viết bình luận">
 
            </div>
-           <div class="col-3">
+           <div class="col-4">
                <input type="file" name="image" id="">
            </div>
-           <div class="col-2">
-               <button type="submit" class="btn btn-primary">Xác Nhận</button>
-           </div>
+          
            </form>
        </div>
        <!-- Nơi Xuất bình luận -->
