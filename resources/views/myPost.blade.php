@@ -15,7 +15,7 @@
           <button class="btn btn-light" style="border-radius: 360px;"><img src="images/user.png" width="30" height="30" alt="" srcset=""></button>
         </div>
         <div class="col-9 text-left">
-          <p class="h5">{{ $post->name }}</p>
+          <p class="h5">{{ $post->user->name }}</p>
           <p class="text-secondary">{{ $post->created_at->format('d/m_____H:i') }} <img src="images/friends.png" width="20" height="20" alt="" srcset=""></p>
         </div>
         <div class="col-2 text-right">
