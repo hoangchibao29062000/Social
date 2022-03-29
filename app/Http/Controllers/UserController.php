@@ -8,6 +8,7 @@ use Illuminate\Contracts\Session\Session as Session;
 
 // session_start();
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
@@ -173,5 +174,12 @@ class UserController extends Controller
         $_SESSION['login']->phone = $update_user['phone'];
         $_SESSION['login']->address = $update_user['address'];
         return redirect('/myInfo');
+    }
+
+    public function getInfo()
+    {
+        $friends = Friends::orderBy('created_at', 'desc')->get();
+        $users = User::where('user_id', $_GET['id'])->get();
+        return view('myInfo',compact('friends','users'),['title' => 'Thông Tin Cá Nhân']);
     }
 }

@@ -38,6 +38,4 @@ class posts extends Model
     public function shares(){
         return $this->hasMany(Share::class,'post_id_share', 'post_id');
     }
-
-
 }

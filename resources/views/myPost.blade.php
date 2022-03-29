@@ -23,7 +23,7 @@
                 <button class="btn btn-light dropdown-friend" style="border-radius: 360px;"><img src="images/dots.png" width="20" height="20" alt="" srcset="">
                     <div class="dropdown-content-friend">
                         <a class="btn btn-info">Chỉnh Sửa</a>
-                        <a class="btn btn-danger">Xóa</a>
+                        <a class="btn btn-danger" href="/deletePost?id={{ $post->post_id }}">Xóa</a>
                     </div>
                 </button>
             </div>
@@ -75,9 +75,9 @@
                             </a>
                         @else
                             <?php $tmp++; ?>
-                        @endif    
+                        @endif
                     @endforeach
-                    <?php 
+                    <?php
                     if($tmp == $likes->count()) :
                     ?>
                     <a href="/like?id={{$post->post_id}}">
@@ -117,7 +117,7 @@
                <form action="/commentPost?id={{$post->post_id}}" method="post" enctype="multipart/form-data">
                @csrf
                     <input type="text" class="form-control" name="content" placeholder="Viết bình luận">
-               
+
            </div>
            <div class="col-3">
                <input type="file" name="image" id="">
