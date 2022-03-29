@@ -29,7 +29,7 @@ class CommentController extends Controller
             // Đường dẫn lưu hình
             $target_dir= "images/myComment";
             // File hình
-            $image =  date("d-m-Y H:i:s",time()).'_'.$request->image->getClientOriginalName();
+            $image =  date("d-m-Y",time()).'_'.$request->image->getClientOriginalName();
             // Tạo đường tới folder lưu hình
             $destinationPath =public_path($target_dir);
             // Dẫn file tới folder
@@ -37,7 +37,7 @@ class CommentController extends Controller
         }else{
             $image = null;
         }
-        
+
             $dateNow = new DateTime();
             // Xử lý đưa lên Database
             comments::create([
@@ -46,7 +46,7 @@ class CommentController extends Controller
                 'content'=>$request->content,
                 'image'=>$image,
                 'date_cmt' =>$dateNow,
-            ]); 
+            ]);
             return redirect('/');
     }
 

@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     //Xử lý đăng ký
@@ -39,7 +39,7 @@ class UserController extends Controller
         $d = 0;
         $user = User::get(); // lấy all user
         foreach ($user as $key => $value) {
-            if($request->all()['email'] === $value['email']){ // kiểm tra email 
+            if($request->all()['email'] === $value['email']){ // kiểm tra email
                 $d++;
             }
         }
@@ -57,7 +57,7 @@ class UserController extends Controller
             return redirect('/register');
             echo '<script type="text/javascript"> alert("Email đã tồn tại")</script>' ;
         }
-        
+
     }
 
     /**
@@ -68,7 +68,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
@@ -110,12 +110,12 @@ class UserController extends Controller
         $e = 0;
         $user = User::get(); // lấy all user
         foreach ($user as $key => $value) {
-            if($request->all()['email'] === $value['email']){ // kiểm tra email 
+            if($request->all()['email'] === $value['email']){ // kiểm tra email
                 $e++;
                 if(md5($request->all()['password']) == $value['password']){ // kiểm tra mật khẩu
                     $_SESSION['login'] = $value;
                     return redirect('/');
-                } 
+                }
                 // if(Hash::check('password',$request->password) == $value['password']){ // kiểm tra mật khẩu
                 //     $_SESSION['login'] = $value;
                 //     Session::put('user',$value); // set
@@ -152,7 +152,7 @@ class UserController extends Controller
             // Đường dẫn lưu hình
             $target_dir= "images/avatar";
             // File hình
-            $avatar = date("d-m-Y H:i:s",time()).'_'.$request->avatar->getClientOriginalName();
+            $avatar = date("d-m-Y",time()).'_'.$request->avatar->getClientOriginalName();
             // Tạo đường tới folder lưu hình
             $destinationPath =public_path($target_dir);
             // Dẫn file tới folder

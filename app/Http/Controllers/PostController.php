@@ -55,7 +55,7 @@ class PostController extends Controller
             // Đường dẫn lưu hình
             $target_dir= "images/myPost";
             // File hình
-            $image =  date("d-m-Y H:i:s",time()).'_'.$request->image->getClientOriginalName();
+            $image =  date("d-m-Y",time()).'_'.$request->image->getClientOriginalName();
             // Tạo đường tới folder lưu hình
             $destinationPath =public_path($target_dir);
             // Dẫn file tới folder
@@ -159,7 +159,7 @@ class PostController extends Controller
         $comments = comments::orderBy('created_at', 'desc')->get();
         $shares = Share::orderBy('created_at', 'desc')->get();
         $friends = Friends::orderBy('created_at', 'desc')->get();
-        dd($shares);
+        dd($likes);
         // return view('ranking',compact('posts','likes','comments','shares','friends'),['title' => 'Xếp hạng bài viết']);
     }
 
