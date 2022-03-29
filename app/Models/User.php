@@ -32,6 +32,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // mot nhieu chinh sang phu
     public function posts(){
         return $this->hasMany(posts::class,'user_id','user_id');
     }

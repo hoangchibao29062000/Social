@@ -84,15 +84,48 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="row">
-                                <div class="col-12">
-                                    <label class="h4" href="#" class="text-left">{{$share->user->name}}</label>
-                                    <label>Shared at {{ $share->created_at->format('H:i__d/m') }}</label>
-                                </div>
-                                <div class="col-12">
-                                    <label href="#" class="text-left">{{$share->post->content}}</label>
-                                </div>
-                                <div class="col-12">
-                                    <img src="images/myPost/{{$share->post->image}}" alt="" srcset="">
+                                    <div class="col-6">
+                                        <label class="h4" href="#" class="text-left">{{ $share->user->name }}</label>
+                                        <label>Shared from {{ $share->post->user->name }} at {{ $share->created_at->format('H:i__d/m') }}</label>
+                                    </div>
+                                    @if($share->user->user_id == $_SESSION['login']->user_id)
+                                    <div class="col-5 text-right">
+                                        <button class="btn btn-light dropdown-share" style="border-radius: 360px;"><img src="images/dots.png" width="20" height="20" alt="" srcset="">
+                                            <div class="dropdown-content-share">
+                                                <a class="btn btn-info">Chỉnh Sửa</a>
+                                                <a class="btn btn-danger">Xóa</a>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    @endif
+                                <div class="card m-auto d-block" style="width:62rem">
+                                    <div class="card-body">
+                                        <!-- Tài khoản đăng -->
+                                        <div class="row">
+                                            <div class="col-1">
+                                                @if ($share->post->user->avatar == null)
+                                                    <a href="#" class="rounded-circle"><img src="images/user.png" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+                                                @else
+                                                    <a href="#" class="rounded-circle"><img src="images/avatar/{{$share->post->user->avatar }}" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+                                                @endif
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <p class="h5"> {{$share->post->user->name }}</p>
+                                                <p class="text-secondary">{{ $share->post->created_at->format('d/m_____H:i') }}<img src="images/friends.png" width="20" height="20" alt="" srcset=""></p>
+                                            </div>
+                                            <div class="col-2 text-right">
+
+                                            </div>
+                                        </div>
+                                        <!-- Nội dung bài viết -->
+                                        <div>
+                                            <p>{{ $share->post->content }}</p>
+                                            </div>
+                                        </div>
+                                        <!-- Hình của bài viết -->
+                                        @if ($share->post->image != null)
+                                            <img src="images/myPost/{{ $share->post->image }}" height="500">
+                                        @endif
                                 </div>
                             </div>
                         </div>
@@ -120,6 +153,7 @@
                 <p class="h5"> {{$post->user->name }}</p>
                 <p class="text-secondary">{{ $post->created_at->format('d/m_____H:i') }}<img src="images/friends.png" width="20" height="20" alt="" srcset=""></p>
             </div>
+            @if($post->user->user_id == $_SESSION['login']->user_id)
             <div class="col-2 text-right">
                 <button class="btn btn-light dropdown-friend" style="border-radius: 360px;"><img src="images/dots.png" width="20" height="20" alt="" srcset="">
                     <div class="dropdown-content-friend">
@@ -128,6 +162,7 @@
                     </div>
                 </button>
             </div>
+            @endif
         </div>
         <!-- Nội dung bài viết -->
         <div>
@@ -230,7 +265,7 @@
            <div class="col-4">
                <input type="file" name="image" id="">
            </div>
-          
+
            </form>
        </div>
        <!-- Nơi Xuất bình luận -->

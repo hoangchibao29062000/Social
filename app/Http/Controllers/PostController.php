@@ -123,7 +123,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
     // Phương thức điều hướng tới tab Bài Viết Của Tôi
     public function myPost() {
