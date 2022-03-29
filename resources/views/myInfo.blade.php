@@ -102,7 +102,7 @@
             <div class="row">
                 @foreach($friends as $friend)
                 <!-- Trường hợp đã kết bạn và người gửi là người đăng nhập -->
-                    @if($friend->role == 2 && $friend->user_id_send == $users[0]['user_id'])
+                    @if($friend->role == 1 && $friend->user_id_send == $users[0]['user_id'])
                         <div class="col-5 mr-4 mb-2 card">
                             <a href="/myInfo?id=<?php echo $friend->user_id_get; ?>">
                                 @if($friend->getUserGet->avatar != null && $friend->user_id_get != $users[0]['user_id'])
@@ -116,7 +116,7 @@
                             </a>
                         </div>
                 <!-- Trường hợp đã kết bạn và người nhận là người đăng nhập -->
-                    @elseif($friend->role == 2 && $friend->user_id_get == $users[0]['user_id'])
+                    @elseif($friend->role == 1 && $friend->user_id_get == $users[0]['user_id'])
                         <div class="col-5 mr-4 mb-2 card">
                             <a href="/myInfo?id=<?php echo $friend->user_id_send; ?>">
                                 @if($friend->getUserSend->avatar != null && $friend->user_id_send != $users[0]['user_id'])

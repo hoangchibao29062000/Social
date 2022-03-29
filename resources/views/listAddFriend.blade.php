@@ -36,9 +36,9 @@
                 @elseif ($friend->role == 0 && $friend->user_id_send ==$_SESSION['login']->user_id)
                     <?php $listFollower[] = $friend->getUserGet->name ?>
                     <!-- Trường hợp mình đã là bạn -->
-                @elseif ($friend->role == 2 && $friend->user_id_send ==$_SESSION['login']->user_id)
+                @elseif ($friend->role == 1 && $friend->user_id_send ==$_SESSION['login']->user_id)
                 <?php $listFollower[] = $friend->getUserGet->name ?>
-                @elseif ($friend->role == 2 && $friend->user_id_get ==$_SESSION['login']->user_id)
+                @elseif ($friend->role == 1 && $friend->user_id_get ==$_SESSION['login']->user_id)
                 <?php $listFollower[] = $friend->getUserSend->name ?>
                 @endif
     @endforeach           

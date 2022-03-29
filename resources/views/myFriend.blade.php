@@ -8,7 +8,7 @@
         <div class="row">
             @foreach ($friends as $friend)
             <!-- Trường hợp có người gởi lời kết bạn cho mình -->
-                @if($friend->role == 1 && $friend->user_id_send ==$_SESSION['login']->user_id || $friend->user_id_get ==$_SESSION['login']->user_id)
+                @if($friend->role == 0 && $friend->user_id_get ==$_SESSION['login']->user_id)
                     <!-- <div class="card col-3 mr-3">
                         <p>{{$friend->getUserSend->name}}</p>
                         <button class="btn btn-primary">Đồng Ý</button>
@@ -24,9 +24,9 @@
                     </div>
                     <?php $listFriend[] = $friend->getUserGet->name ?>
                <!-- Trường hợp mình đã là bạn -->
-               @elseif ($friend->role == 2 && $friend->user_id_send ==$_SESSION['login']->user_id)
+               @elseif ($friend->role == 1 && $friend->user_id_send ==$_SESSION['login']->user_id)
                 <?php $listFriend[] = $friend->getUserGet->name ?>
-                @elseif ($friend->role == 2 && $friend->user_id_get ==$_SESSION['login']->user_id)
+                @elseif ($friend->role == 1 && $friend->user_id_get ==$_SESSION['login']->user_id)
                 <?php $listFriend[] = $friend->getUserSend->name ?>
                 @endif
             @endforeach
