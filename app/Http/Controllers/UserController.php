@@ -175,7 +175,7 @@ class UserController extends Controller
         $_SESSION['login']->address = $update_user['address'];
         return redirect('/myInfo');
     }
-
+// Lấy Thông Tin Người Dùng
     public function getInfo()
     {
         $friends = Friends::orderBy('created_at', 'desc')->get();

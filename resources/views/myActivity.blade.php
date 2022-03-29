@@ -187,6 +187,7 @@ use Carbon\Carbon;
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="card-body">
         @foreach($changeFriends as $friend)
+        <!-- Trường hợp người đăng nhập gởi lời kết bạn đến ai đó -->
             @if(($friend->updated_at > $friend->created_at || $friend->role == 0) && $friend->user_id_send == $_SESSION['login']->user_id)
                 <div class="card ">
                     <div class="row">
@@ -213,7 +214,8 @@ use Carbon\Carbon;
                     </div>
                 </div>
             @endif
-            @if($friend->role == 2 && $friend->updated_at > $friend->created_at && $friend->user_id_send == $_SESSION['login']->user_id)
+            <!-- Trường hợp người dùng đã là bạn với ai đó -->
+            @if($friend->role == 1 && $friend->updated_at > $friend->created_at && $friend->user_id_send == $_SESSION['login']->user_id)
                 <div class="card ">
                     <div class="row">
                     <div class="col-9">
@@ -240,6 +242,36 @@ use Carbon\Carbon;
                     </div>
                     </div>
                 </div>    
+            @endif
+            <!-- Trường hợp có người gởi lời kết bạn cho người đăng nhập-->
+            @if(($friend->updated_at > $friend->created_at || $friend->role == 0) && $friend->user_id_get == $_SESSION['login']->user_id)
+                <div class="card ">
+                    <div class="row">
+                    <div class="col-9">
+                    <label>
+                        @if($friend->getUserSend->avatar == null)
+                            <img src="images/user.png" height="40" width="40" alt="" srcset="">
+                        @else
+                            <img src="images/avatar/<?php echo $friend->getUserSend->avatar?>" height="40" width="40" alt="" srcset="">
+                        @endif
+                        <label class="font-weight-bold">{{$friend->getUserSend->name}}</label>
+                       
+                            Đã gửi lời kết bạn đến
+                        @if($_SESSION['login']->avatar == null)
+                            <img src="images/user.png" height="40" width="40" alt="" srcset="">
+                        @else
+                            <img src="images/avatar/<?php echo $_SESSION['login']->avatar?>" height="40" width="40" alt="" srcset="">
+                        @endif
+                        
+                        <label class="font-weight-bold">{{$_SESSION['login']->name}}</label>
+                           
+                    </label>
+                    </div>
+                    <div class="col-2 text-right">
+                        {{$friend->created_at->format('H:i:s d-m-Y')}}
+                    </div>
+                    </div>
+                </div>  
             @endif
         @endforeach
       </div>

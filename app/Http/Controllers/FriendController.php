@@ -104,7 +104,7 @@ class FriendController extends Controller
         friends::where([
             'id'=>$_GET['id'],
         ])->update([
-            'role'=>2
+            'role'=>1
         ]);
         return redirect('/myInfo');
     }
