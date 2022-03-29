@@ -233,10 +233,12 @@
                     </button>
                 </div>
                 <div class="col-3">
-                    <button class="btn btn-light">
-                        <img src="images/share.png" width="25" height="25" alt="" srcset="">
-                        Chia Sẻ
-                    </button>
+                    <a href="/share?id={{$post->post_id}}">
+                        <button class="btn btn-light">
+                            <img src="images/share.png" width="25" height="25" alt="" srcset="">
+                            Chia Sẻ
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>

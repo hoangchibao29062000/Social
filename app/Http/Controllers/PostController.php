@@ -147,20 +147,20 @@ class PostController extends Controller
 
     public function rankPost()
     {
-        // $likes = DB::table('likes')
-        //      ->select(DB::raw('count(post_id),post_id'))
-        //      ->groupby('post_id')
-        //      ->get();
-        $likes = likes::select(DB::raw('count(post_id) as count, post_id'))
-            ->groupBy('post_id')
-            ->orderBy('count', 'desc')
-            ->get();
+        $likes = DB::table('likes')
+             ->select(DB::raw('count(post_id),post_id'))
+             ->groupby('post_id')
+             ->get();
+        // $likes = likes::select(DB::raw('count(post_id) as count, post_id'))
+        //     ->groupBy('post_id')
+        //     ->orderBy('count', 'desc')
+        //     ->get();
         $posts = posts::get();
         $comments = comments::orderBy('created_at', 'desc')->get();
         $shares = Share::orderBy('created_at', 'desc')->get();
         $friends = Friends::orderBy('created_at', 'desc')->get();
-        dd($likes);
-        // return view('ranking',compact('posts','likes','comments','shares','friends'),['title' => 'Xếp hạng bài viết']);
+        // dd($likes);
+        return view('ranking',compact('posts','likes','comments','shares','friends'),['title' => 'Xếp hạng bài viết']);
     }
 
 
