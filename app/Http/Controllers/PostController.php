@@ -137,10 +137,12 @@ class PostController extends Controller
     public function myPost() {
         $id = $_SESSION['login']->user_id;
         // get posts by id order by created_at desc
+        $shares = Share::orderBy('created_at', 'desc')->get();
         $posts = posts::where('user_id', $id)->orderBy('created_at', 'desc')->get();
         $likes = likes::get();
+
         $comments =comments::get();
-        return view('myPost', compact('posts','likes','comments'), ['title' => 'Bài Viết Của Tôi']);
+        return view('myPost', compact('posts','likes','comments', 'shares'), ['title' => 'Bài Viết Của Tôi']);
     }
 
     public function rankPost()
@@ -153,13 +155,12 @@ class PostController extends Controller
             ->groupBy('post_id')
             ->orderBy('count', 'desc')
             ->get();
-
         $posts = posts::get();
         $comments = comments::orderBy('created_at', 'desc')->get();
         $shares = Share::orderBy('created_at', 'desc')->get();
         $friends = Friends::orderBy('created_at', 'desc')->get();
-        // dd($likes);
-        return view('ranking',compact('posts','likes','comments','shares','friends'),['title' => 'Xếp hạng bài viết']);
+        dd($shares);
+        // return view('ranking',compact('posts','likes','comments','shares','friends'),['title' => 'Xếp hạng bài viết']);
     }
 
 
