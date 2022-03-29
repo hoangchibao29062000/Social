@@ -39,10 +39,7 @@ Route::post('/post', [PostController::class, 'upPost'])->name('post.upPost');
 // Điều hướng tới trang bài viết của tôi
 Route::get('/myPost', [PostController::class,'myPost'])->name('post.myPost');
 // Điều hướng tới trang thông tin cá nhân
-Route::get('/myInfo', function () {
-    $friends = Friends::orderBy('created_at', 'desc')->get();
-    return view('myInfo',compact('friends',),['title' => 'Thông Tin Cá Nhân']);
-});
+Route::get('/myInfo', [UserController::class, 'getInfo'])->name('user.getInfo');
 // Điều hướng tới trang bạn bè
 Route::get('/myFriend', [UserController::class, 'getAllUser'])->name('user.getAllUser');
 // xử lý gởi lời kết bạn

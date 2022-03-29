@@ -20,9 +20,9 @@
                 <!-- Avatar -->
                 <div class="col-2">
                     @if ($friend->getUserSend->avatar == null)
-                    <button class="btn btn-light" style="border-radius: 360px;"><img src="images/user.png" width="40" height="40" alt="" srcset=""></button>
+                        <a href="/myInfo?id=<?php echo $friend->getUserSend->user_id; ?>" class="btn btn-light" style="border-radius: 360px;"><img src="images/user.png" width="40" height="40" alt="" srcset=""></a>
                     @else
-                    <button class="btn btn-light" style="border-radius: 360px;"><img src="images/avatar/<?php echo $friend->getUserSend->avatar; ?>" width="40" height="40"" alt="" srcset=""></button>
+                        <a href="/myInfo?id=<?php echo $friend->getUserSend->user_id; ?>" class="btn btn-light" style="border-radius: 360px;"><img src="images/avatar/<?php echo $friend->getUserSend->avatar; ?>" width="40" height="40"" alt="" srcset=""></a>
                     @endif
                 </div>
                 <div class="col-10">

@@ -1,6 +1,6 @@
 <div class=" navbar-lightbg-light">
     <!-- Thông tin cá nhân -->
-    <a href="/myInfo">
+    <a href="/myInfo?id=<?php echo $_SESSION['login']->user_id; ?>">
     <button class="btn btn-light w-100 text-left" style="border-radius: 360px;">
     <img src="/images/user.png" alt="" srcset="" width="40" height="40" class="rounded-circle">
     <label>Thông Tin Cá Nhân</label>

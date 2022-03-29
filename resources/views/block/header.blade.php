@@ -19,7 +19,7 @@
     </ul>
     <div class="form-inline my-2 ml-auto">
         <!-- Hiển thị Tên Đăng nhập -->
-        <a href="/myInfo">
+        <a href="/myInfo?id=<?php echo $_SESSION['login']->user_id; ?>">
           @if($_SESSION['login']->avatar == null)
             <img src="images/user.png" alt="" srcset="" width="40" height="40" class="rounded-circle">
           @else
