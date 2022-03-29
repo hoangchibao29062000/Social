@@ -21,9 +21,11 @@
         </button>
     </a>
     <br>
-    <button class="btn btn-light w-100 text-left" style="border-radius: 360px;">
-    <img src="images/time-left.png" alt="" srcset="" width="40" height="40">
-    <label>Kỉ niệm</label>
-    </button>
+    <a href="/myActivity">
+        <button class="btn btn-light w-100 text-left" style="border-radius: 360px;">
+        <img src="images/time-left.png" alt="" srcset="" width="40" height="40">
+        <label>Nhật Kí Hoạt Động</label>
+        </button>
+    </a>
     <br>
 </div>

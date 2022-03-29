@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\MyActivityController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ShareController;
 use App\Http\Controllers\UserController;
@@ -75,3 +76,5 @@ Route::get('/unlike',[LikeController::class, 'destroy']);
 Route::get('/share',[ShareController::class, 'share']);
 //Bình Luận Bài Viết
 Route::post('/commentPost',[CommentController::class, 'create']);
+// Điều hướng tới trang Nhật Kí Hoạt Động
+Route::get('/myActivity',[MyActivityController::class, 'index']);

@@ -42,7 +42,7 @@
                         @if($user->avatar == null)
                         <img src="images/user.png" alt="" srcset="" height="200"class="card-img-top" srcset="">
                         @else
-                        <img src="images/avatar/{{$user->avatar}}" class="card-img-top" alt="" srcset="">
+                        <img src="images/avatar/{{$user->avatar}}"height="200" class="card-img-top" alt="" srcset="">
                         @endif
                         <p>{{$user->name}}</p>
                         <a href="/madefriend?send=<?php echo($_SESSION['login']->user_id) ?>&&get=<?php echo $user->user_id; ?>" class="btn btn-primary">Thêm Bạn Bè</a>

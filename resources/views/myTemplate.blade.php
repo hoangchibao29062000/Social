@@ -70,6 +70,12 @@
                 @yield('ranking')
             </div>
             @endif
+             <!-- Nhật Kí Hoạt Động -->
+             @if ($title == "Nhật Kí Hoạt Động")
+            <div class="col-10 col-lg-10 col-xl-10">
+                @yield('myActivity')
+            </div>
+            @endif
         </div>
     @else
         @yield('login')

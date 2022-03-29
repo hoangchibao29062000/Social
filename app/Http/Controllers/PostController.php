@@ -56,7 +56,7 @@ class PostController extends Controller
             // Đường dẫn lưu hình
             $target_dir= "images/myPost";
             // File hình
-            $image =  time().'_'.$request->image->getClientOriginalName();
+            $image =  date("d-m-Y H:i:s",time()).'_'.$request->image->getClientOriginalName();
             // Tạo đường tới folder lưu hình
             $destinationPath =public_path($target_dir);
             // Dẫn file tới folder

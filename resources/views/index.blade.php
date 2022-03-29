@@ -69,7 +69,7 @@
       </div>
   </div>
 
-  {{-- get shares--}}
+  <!-- Xuất các bài đã được chia sẻ -->
     @foreach ($shares as $share)
         <div class="card mt-4 ml-5" style="width:62rem">
             <div class="row m-2">
@@ -84,12 +84,18 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-5">
                                         <label class="h4" href="#" class="text-left">{{ $share->user->name }}</label>
-                                        <label>Shared from {{ $share->post->user->name }} at {{ $share->created_at->format('H:i__d/m') }}</label>
+                                        <label>Shared from 
+                                            @if($share->post->user_id == $share->user_id_share)
+                                            me
+                                            @else
+                                            {{ $share->post->user->name }}
+                                            @endif    
+                                        at {{ $share->created_at->format('H:i__d/m') }}</label>
                                     </div>
                                     @if($share->user->user_id == $_SESSION['login']->user_id)
-                                    <div class="col-5 text-right">
+                                    <div class="col-6 text-right">
                                         <button class="btn btn-light dropdown-share" style="border-radius: 360px;"><img src="images/dots.png" width="20" height="20" alt="" srcset="">
                                             <div class="dropdown-content-share">
                                                 <a class="btn btn-info">Chỉnh Sửa</a>
@@ -124,9 +130,71 @@
                                         </div>
                                         <!-- Hình của bài viết -->
                                         @if ($share->post->image != null)
-                                            <img src="images/myPost/{{ $share->post->image }}" height="500">
+                                            <img src="images/myPost/{{ $share->post->image }}" height="500" width="100%" alt="">
                                         @endif
                                 </div>
+                                <!-- Lượt thích -->
+        <div class="row ml-3 mr-3">
+            @if($share->likes->count() > 0 )
+            <div class="col-8">
+                <p>
+                    <img src="images/like.png" width="20" height="20" alt="" srcset="">
+                    <span>{{ $share->likes->count() }}</span>
+                    </p>
+                </div>
+                @endif
+
+                @if($share->comments->count() > 0 )
+                    @if($share->likes->count() == 0 )
+                    <div class="col-8"></div>
+                    @endif
+                <div class="col-2 text-right">
+                    <p>{{ $share->comments->count() }} bình luận</p>
+                </div>
+                @endif
+               
+            </div>
+        <!-- Nút Like, Bình Luận, Chia Sẻ -->
+        <div class="text-center p-auto m-auto" style="border-top:1px solid; width:70%" >
+            <div class="row">
+                <div class="col-4 ">
+                    <?php
+                        $tmp = 0;
+                    ?>
+                @foreach($likes as $like)
+                        @if ($like->user_id ==$_SESSION['login']->user_id && $like->post_id ==$share->post_id)
+                        <a href="/unlike?id={{$post->id}}">
+                                <button class="btn btn-light">
+                            <img src="images/like.png" width="25" height="25" alt="" srcset="">
+                            Bỏ Thích
+                                </button>
+                            </a>
+                        @else
+                            <?php $tmp++; ?>
+                        @endif
+                    @endforeach
+                    <?php
+                    if($tmp == $likes->count()) :
+                    ?>
+                    <a href="/like?id={{$share->id}}">
+                                <button class="btn btn-light">
+                            <img src="images/like-white.png" width="25" height="25" alt="" srcset="">
+                            Thích
+                                </button>
+                            </a>
+                    <?php
+                        endif;
+                    ?>
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-light">
+                        <img src="images/message.png" width="25" height="25" alt="" srcset="">
+                        Bình Luận
+                    </button>
+                </div>
+               
+            </div>
+        </div>
                             </div>
                         </div>
                     </div>

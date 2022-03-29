@@ -82,7 +82,7 @@ class FriendController extends Controller
     {
         //
     }
-
+    // Phương thức xử lý gởi lời kết bạn
     public function madeFriend()
     {
         Friends::create([

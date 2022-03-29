@@ -133,7 +133,11 @@
                 @if($comment->post_id == $post->post_id)
                 <div class="row">
                     <div class="col-1">
+                        @if($comment->user->avatar == null)
+                        <img src="images/user.png"height="40" width="40" alt="">
+                        @else
                         <img src="images/avatar/{{$comment->user->avatar}}" height="40" width="40" alt="">
+                        @endif
                     </div>
                     <div class="col-10">
                         <label class="h6">{{$comment->user->name}}</label>
@@ -142,6 +146,7 @@
                             <p >{{$comment->content}}</p>
                                 @if ($comment->image != null)
                                 <img src="images/myComment/{{$comment->image}}" width="200" height="150" alt="" srcset="">
+                                
                                 @endif
                         </div>
                     </div>

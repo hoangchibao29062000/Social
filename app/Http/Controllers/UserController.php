@@ -151,7 +151,7 @@ class UserController extends Controller
             // Đường dẫn lưu hình
             $target_dir= "images/avatar";
             // File hình
-            $avatar =  time().'_'.$request->avatar->getClientOriginalName();
+            $avatar = date("d-m-Y H:i:s",time()).'_'.$request->avatar->getClientOriginalName();
             // Tạo đường tới folder lưu hình
             $destinationPath =public_path($target_dir);
             // Dẫn file tới folder
