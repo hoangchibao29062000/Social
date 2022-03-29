@@ -11,6 +11,7 @@ use App\Models\likes;
 use App\Models\Share;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
@@ -24,13 +25,11 @@ class PostController extends Controller
         $shares = Share::orderBy('created_at', 'desc')->get();
         $friends = Friends::orderBy('created_at', 'desc')->get();
         // Xét trường hợp đã login hay chưa
-            if(!isset($_SESSION['login'])) {
-                return redirect('/login');
-            } else {
-                return view('index',compact('posts','likes','comments','shares','friends'),['title' => 'Trang Chủ']);
-            }
-        // return view('index',['title' => 'Trang Chủ']);
-        // return view('login',['title' => 'Đăng nhập']);
+        if(!isset($_SESSION['login'])) {
+            return redirect('/login');
+        } else {
+            return view('index',compact('posts','likes','comments','shares','friends'),['title' => 'Trang Chủ']);
+        }
     }
 
     /**
@@ -133,5 +132,19 @@ class PostController extends Controller
         $likes = likes::get();
         $comments =comments::get();
         return view('myPost', compact('posts','likes','comments'), ['title' => 'Bài Viết Của Tôi']);
+    }
+
+    public function rankPost()
+    {
+        $likes = DB::table('likes')
+             ->select(DB::raw('count(post_id),post_id'))
+             ->groupby('post_id')
+             ->get();
+        $posts = posts::get();
+        $comments = comments::orderBy('created_at', 'desc')->get();
+        $shares = Share::orderBy('created_at', 'desc')->get();
+        $friends = Friends::orderBy('created_at', 'desc')->get();
+        // dd($likes);
+        return view('ranking',compact('posts','likes','comments','shares','friends'),['title' => 'Xếp hạng bài viết']);
     }
 }

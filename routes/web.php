@@ -58,9 +58,7 @@ Route::get('/listAddFriend', function () {
 // Điều hướng xóa lời mời kết Bạn
 Route::get('deleteInviteFriend',[FriendController::class, 'deleteInviteFriend'])->name('friend.deleteInviteFriend');
 // Điều hướng tới trang xếp hạng bài viết
-Route::get('/ranking', function () {
-    return view('ranking',['title' => 'Xếp Hạng Bài Viết']);
-});
+Route::get('/ranking', [PostController::class,'rankPost'])->name('post.rankPost');
 // Điều hướng tới trang Thông Tin Bài Viết
 Route::get('/detailPost', function () {
     return view('detailPost',['title' => 'Thông Tin Bài Viết']);
