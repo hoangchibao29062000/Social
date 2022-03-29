@@ -13,10 +13,12 @@ class Share extends Model
         'user_id_share',
     ];
 
+    // môt một phụ sang chính
     public function post()
     {
         return $this->belongsTo(posts::class, 'post_id_share', 'post_id');
     }
+    // môt một phụ sang chính
 
     public function user()
     {
