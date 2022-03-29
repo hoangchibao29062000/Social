@@ -11,13 +11,14 @@ use Carbon\Carbon;
       <!-- Bài Viết Của Tôi -->
     <div class="card-header" id="headingOne">
       <h2 class="mb-0">
-        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
          Bài Viết Của Bạn
         </button>
       </h2>
     </div>
     <!-- Nội Dung Xuất Ra -->
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      @if(count($posts) > 0)
       <div class="card-body">
         @foreach($posts as $post)
         <div class="card mt-4 ml-5" style="width:62rem">
@@ -173,6 +174,9 @@ use Carbon\Carbon;
 </div>
         @endforeach
       </div>
+      @else
+        <h5>Nay Không Có Hoạt Động Nào</h5>
+      @endif
     </div>
   </div>
   <!-- Kết Thúc Bài Viết Của Tôi -->
@@ -185,6 +189,7 @@ use Carbon\Carbon;
       </h2>
     </div>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      @if(count($changeFriends) > 0)
       <div class="card-body">
         @foreach($changeFriends as $friend)
         <!-- Trường hợp người đăng nhập gởi lời kết bạn đến ai đó -->
@@ -209,36 +214,46 @@ use Carbon\Carbon;
                         </label>
                     </div>
                     <div class="col-2 text-right">
-                        {{$friend->created_at->format('H:i:s d-m-Y')}}
+                        {{$friend->created_at->format('H:i d-m-Y')}}
                     </div>
                     </div>
                 </div>
             @endif
             <!-- Trường hợp người dùng đã là bạn với ai đó -->
-            @if($friend->role == 1 && $friend->updated_at > $friend->created_at && $friend->user_id_send == $_SESSION['login']->user_id)
+            @if($friend->role == 1 && $friend->updated_at > $friend->created_at && ($friend->user_id_send == $_SESSION['login']->user_id ||$friend->user_id_get == $_SESSION['login']->user_id))
                 <div class="card ">
                     <div class="row">
                     <div class="col-9">
-                    @if($_SESSION['login']->avatar == null)
+                        @if($_SESSION['login']->avatar == null)
                             <img src="images/user.png" height="40" width="40" alt="" srcset="">
                         @else
                             <img src="images/avatar/<?php echo $_SESSION['login']->avatar?>" height="40" width="40" alt="" srcset="">
                         @endif
                         <label>
+                           @if($friend->user_id_send == $_SESSION['login']->user_id)
                             <label class="font-weight-bold">{{$_SESSION['login']->name}}</label> và 
-                            @if($friend->getUserGet->avatar == null)
-                                <img src="images/user.png" height="40" width="40" alt="" srcset="">
+                                @if($friend->getUserGet->avatar == null)
+                                    <img src="images/user.png" height="40" width="40" alt="" srcset="">
+                                @else
+                                    <img src="images/avatar/<?php echo $friend->getUserGet->avatar?>" height="40" width="40" alt="" srcset="">
+                                @endif
+                                <label class="font-weight-bold">{{$friend->getUserGet->name}}</label>
+                                Đã là bạn của nhau
+                            
                             @else
-                                <img src="images/avatar/<?php echo $friend->getUserGet->avatar?>" height="40" width="40" alt="" srcset="">
-                            @endif
-                            <label class="font-weight-bold">{{$friend->getUserGet->name}}</label>
-                            Đã là bạn của nhau
-                            
-                            
+                                <label class="font-weight-bold">{{$_SESSION['login']->name}}</label> và 
+                                @if($friend->getUserSend->avatar == null)
+                                    <img src="images/user.png" height="40" width="40" alt="" srcset="">
+                                @else
+                                    <img src="images/avatar/<?php echo $friend->getUserSend->avatar?>" height="40" width="40" alt="" srcset="">
+                                @endif
+                                <label class="font-weight-bold">{{$friend->getUserSend->name}}</label>
+                                Đã là bạn của nhau
+                           @endif
                         </label>
                     </div>
                     <div class="col-2 text-right">
-                        {{$friend->updated_at->format('H:i:s d-m-Y')}}
+                        {{$friend->updated_at->format('H:i d-m-Y')}}
                     </div>
                     </div>
                 </div>    
@@ -268,28 +283,274 @@ use Carbon\Carbon;
                     </label>
                     </div>
                     <div class="col-2 text-right">
-                        {{$friend->created_at->format('H:i:s d-m-Y')}}
+                        {{$friend->created_at->format('H:i d-m-Y')}}
                     </div>
                     </div>
                 </div>  
             @endif
         @endforeach
       </div>
+      @else
+      <h5>Nay Không Có Hoạt Động Nào</h5>
+      @endif
     </div>
   </div>
   <div class="card">
     <div class="card-header" id="headingThree">
       <h2 class="mb-0">
         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Collapsible Group Item #3
+          Lượt Thích
         </button>
       </h2>
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+          <?php $flatLike = 0 ?>
+        @if(count($likes) > 0)
+            @foreach($likes as $like)
+            <!-- Trường hợp ai đó hoặc người đăng nhập thích bài viết của chính mình -->
+            @if($like->post->user_id == $_SESSION['login']->user_id)
+            <div class="card ">
+                <div class="row"> 
+                    <div class="col-9">
+                    <label>
+                        @if($like->user->avatar == null)
+                            <img src="images/user.png" height="40" width="40" alt="" srcset="">
+                        @else
+                            <img src="images/avatar/<?php echo $like->user->avatar?>" height="40" width="40" alt="" srcset="">
+                            
+                        @endif
+                        <label class="font-weight-bold">{{$like->user->name}}</label>
+                            Đã thích bài viết của
+                        @if($like->post->user->user_id == $_SESSION['login']->user_id)
+                            mình  
+                        @else
+                            @if($like->getUserUpPost->avatar == null)
+                                <img src="images/user.png" height="40" width="40" alt="" srcset="">
+                            @else
+                                <img src="images/avatar/<?php echo $like->getUserUpPost->avatar?>" height="40" width="40" alt="" srcset="">
+                            @endif
+                            <label class="font-weight-bold">{{$like->getUserUpPost->name}}</label>
+                        @endif
+                    </div>
+                        <div class="col-2 text-right">
+                            {{$like->created_at->format('H:i d-m-Y')}}
+                        </div>
+                </div>
+            </div>     
+             <!-- Trường hợp người đăng nhập thích bài viết của người khác -->
+            @elseif($like->user->user_id== $_SESSION['login']->user_id)
+                <div class="card ">
+                    <div class="row">
+                        <div class="col-9">
+                            <label>
+                            @if($like->getUserLike->avatar == null)
+                                <img src="images/user.png" height="40" width="40" alt="" srcset="">
+                            @else
+                                <img src="images/avatar/<?php echo $like->getUserLike->avatar?>" height="40" width="40" alt="" srcset="">
+                            @endif
+                            <label class="font-weight-bold">{{$like->getUserLike->name}}</label>
+                                    Đã thích bài viết của 
+
+                            @if($like->post->user->avatar == null)
+                                <img src="images/user.png" height="40" width="40" alt="" srcset="">
+                            @else
+                                <img src="images/avatar/<?php echo $like->post->user->avatar?>" height="40" width="40" alt="" srcset="">
+                            @endif
+                            <label class="font-weight-bold">{{$like->post->user->name}}</label>
+                            </label>
+                            </div>
+                        <div class="col-2 text-right">
+                            {{$like->created_at->format('H:i d-m-Y')}}
+                        </div>
+                    </div>
+                </div>
+                   
+            <!-- Trường hợp không có hoạt động gì cả -->
+            @else
+                <?php $flatLike++ ?>               
+            @endif
+            @if($flatLike == count($likes))
+                        <h5>Không Có Hoạt Động Nào</h5>
+            @endif           
+            @endforeach
+        @else
+            <h5>Nay Không Có Hoạt Động Nào</h5>
+        @endif
       </div>
     </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingFour">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          Bình Luận
+        </button>
+      </h2>
+    </div>
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+    <div class="card-body">
+          <?php $flatComment = 0 ?>
+        @if(count($comments) > 0)
+            @foreach($comments as $comment)
+            <!-- Trường hợp ai đó hoặc người đăng nhập bình luận bài viết của chính mình -->
+            @if($comment->post->user_id == $_SESSION['login']->user_id)
+            <div class="card ">
+                <div class="row"> 
+                    <div class="col-9">
+                    <label>
+                        @if($comment->user->avatar == null)
+                            <img src="images/user.png" height="40" width="40" alt="" srcset="">
+                        @else
+                            <img src="images/avatar/<?php echo $comment->user->avatar?>" height="40" width="40" alt="" srcset="">
+                            
+                        @endif
+                        <label class="font-weight-bold">{{$comment->user->name}}</label>
+                            Đã bình luận bài viết của
+                        @if($comment->post->user->user_id == $_SESSION['login']->user_id)
+                            mình  
+                        @else
+                            @if($comment->getUserUpPost->avatar == null)
+                                <img src="images/user.png" height="40" width="40" alt="" srcset="">
+                            @else
+                                <img src="images/avatar/<?php echo $comment->getUserUpPost->avatar?>" height="40" width="40" alt="" srcset="">
+                            @endif
+                            <label class="font-weight-bold">{{$comment->getUserUpPost->name}}</label>
+                        @endif
+                    </div>
+                        <div class="col-2 text-right">
+                            {{$comment->created_at->format('H:i d-m-Y')}}
+                        </div>
+                </div>
+            </div>     
+             <!-- Trường hợp người đăng nhập bình luận bài viết của người khác -->
+            @elseif($comment->user->user_id== $_SESSION['login']->user_id)
+                <div class="card ">
+                    <div class="row">
+                        <div class="col-9">
+                            <label>
+                            @if($comment->getUserComment->avatar == null)
+                                <img src="images/user.png" height="40" width="40" alt="" srcset="">
+                            @else
+                                <img src="images/avatar/<?php echo $comment->getUserComment->avatar?>" height="40" width="40" alt="" srcset="">
+                            @endif
+                            <label class="font-weight-bold">{{$comment->getUserComment->name}}</label>
+                                    Đã bình luận bài viết của 
+
+                            @if($comment->post->user->avatar == null)
+                                <img src="images/user.png" height="40" width="40" alt="" srcset="">
+                            @else
+                                <img src="images/avatar/<?php echo $comment->post->user->avatar?>" height="40" width="40" alt="" srcset="">
+                            @endif
+                            <label class="font-weight-bold">{{$comment->post->user->name}}</label>
+                            </label>
+                            </div>
+                        <div class="col-2 text-right">
+                            {{$comment->created_at->format('H:i d-m-Y')}}
+                        </div>
+                    </div>
+                </div>
+                   
+            <!-- Trường hợp không có hoạt động gì cả -->
+            @else
+                <?php $flatComment++ ?>               
+            @endif
+            @if($flatComment == count($comments))
+                        <h5>Không Có Hoạt Động Nào</h5>
+            @endif           
+               
+            @endforeach
+        @else
+            <h5>Nay Không Có Hoạt Động Nào</h5>
+        @endif
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingFive">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFine" aria-expanded="false" aria-controls="collapseFine">
+          Chia Sẻ Bài Viết
+        </button>
+      </h2>
+    </div>
+    <div id="collapseFine" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+      
+    <div class="card-body">
+          <?php $flatShare = 0 ?>
+        @if(count($shares) > 0)
+            @foreach($shares as $share)
+            <!-- Trường hợp ai đó hoặc người đăng nhập chia sẻ bài viết của chính mình -->
+            @if($share->post->user_id == $_SESSION['login']->user_id)
+            <div class="card ">
+                <div class="row"> 
+                    <div class="col-9">
+                    <label>
+                        @if($share->user->avatar == null)
+                            <img src="images/user.png" height="40" width="40" alt="" srcset="">
+                        @else
+                            <img src="images/avatar/<?php echo $share->user->avatar?>" height="40" width="40" alt="" srcset="">
+                            
+                        @endif
+                        <label class="font-weight-bold">{{$share->user->name}}</label>
+                            Đã chia sẻ bài viết của
+                        @if($share->post->user->user_id == $_SESSION['login']->user_id)
+                            mình  
+                        @else
+                            @if($share->getUserUpPost->avatar == null)
+                                <img src="images/user.png" height="40" width="40" alt="" srcset="">
+                            @else
+                                <img src="images/avatar/<?php echo $share->getUserUpPost->avatar?>" height="40" width="40" alt="" srcset="">
+                            @endif
+                            <label class="font-weight-bold">{{$share->getUserUpPost->name}}</label>
+                        @endif
+                    </div>
+                        <div class="col-2 text-right">
+                            {{$share->created_at->format('H:i d-m-Y')}}
+                        </div>
+                </div>
+            </div>     
+             <!-- Trường hợp người đăng nhập chia sẻ bài viết của người khác -->
+            @elseif($share->user->user_id== $_SESSION['login']->user_id)
+                <div class="card ">
+                    <div class="row">
+                        <div class="col-9">
+                            <label>
+                            @if($share->getUserShare->avatar == null)
+                                <img src="images/user.png" height="40" width="40" alt="" srcset="">
+                            @else
+                                <img src="images/avatar/<?php echo $share->getUserShare->avatar?>" height="40" width="40" alt="" srcset="">
+                            @endif
+                            <label class="font-weight-bold">{{$share->getUserShare->name}}</label>
+                                    Đã chia sẻ bài viết của 
+
+                            @if($share->post->user->avatar == null)
+                                <img src="images/user.png" height="40" width="40" alt="" srcset="">
+                            @else
+                                <img src="images/avatar/<?php echo $share->post->user->avatar?>" height="40" width="40" alt="" srcset="">
+                            @endif
+                            <label class="font-weight-bold">{{$share->post->user->name}}</label>
+                            </label>
+                            </div>
+                        <div class="col-2 text-right">
+                            {{$share->created_at->format('H:i d-m-Y')}}
+                        </div>
+                    </div>
+                </div>
+                   
+            <!-- Trường hợp không có hoạt động gì cả -->
+            @else
+                <?php $flatShare++ ?>               
+            @endif
+            @if($flatShare == count($shares))
+                        <h5>Không Có Hoạt Động Nào</h5>
+            @endif          
+            @endforeach
+        @else
+            <h5>Nay Không Có Hoạt Động Nào</h5>
+        @endif
+      </div>
+      </div>
   </div>
 </div>
 @endsection

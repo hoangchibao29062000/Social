@@ -15,6 +15,7 @@ class MyActivityController extends Controller
         $dataLikes = likes::get();
         $dataPost = posts::get();
         $dataComments = comments::get();
+        $dataShare = Share::get();
         // Lấy các post của mình và trong ngày hiện tại
         $posts = array();
         foreach (posts::orderBy('created_at', 'desc')->get() as $post) {
@@ -26,7 +27,7 @@ class MyActivityController extends Controller
         // Lấy các share của mình và trong ngày hiện tại
         $shares = array();
         foreach (Share::orderBy('created_at', 'desc')->get() as $share) {
-             if($share->user_id == $_SESSION['login']->user_id && $share->created_at->format('d') == date("d",time())) {
+             if(($share->user_id == $_SESSION['login']->user_id || $share->user_id != $_SESSION['login']->user_id ) && $share->created_at->format('d') == date("d",time())) {
                  $shares[] = $share;
              }
         }
@@ -34,7 +35,7 @@ class MyActivityController extends Controller
         // Lấy các like của mình và trong ngày hiện tại
         $likes = array();
         foreach (likes::orderBy('created_at', 'desc')->get() as $like) {
-            if($like->user_id == $_SESSION['login']->user_id && $like->created_at->format('d') == date("d",time())) {
+            if(($like->user_id == $_SESSION['login']->user_id || $like->user_id != $_SESSION['login']->user_id )&& $like->created_at->format('d') == date("d",time())) {
                 $likes[] = $like;
             }
         }
@@ -42,7 +43,7 @@ class MyActivityController extends Controller
         // Lấy các commnent của mình và trong ngày hiện tại
         $comments = array();
         foreach (comments::orderBy('created_at', 'desc')->get() as $comment) {
-            if($comment->user_id == $_SESSION['login']->user_id && $comment->created_at->format('d') == date("d",time())) {
+            if(($comment->user_id == $_SESSION['login']->user_id || $comment->user_id != $_SESSION['login']->user_id ) && $comment->created_at->format('d') == date("d",time())) {
                 $comments[] = $comment;
             }
         }
