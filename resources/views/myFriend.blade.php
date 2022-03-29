@@ -35,10 +35,9 @@
         <h3 class="mt-3">Danh sách gợi ý</h3>
         <div class="row">
             @foreach ($users as $user)
-            <?php
-                if($user->user_id != $_SESSION['login']->user_id && !in_array($user->name,$listFriend)) :
-            ?>        
-                
+                <?php
+                    if($user->user_id != $_SESSION['login']->user_id && !in_array($user->name,$listFriend)) :
+                ?>        
                     <div class="card col-2 mr-2" style="width: 18rem;">
                         @if($user->avatar == null)
                         <img src="images/user.png" alt="" srcset="" height="200"class="card-img-top" srcset="">
@@ -48,11 +47,9 @@
                         <p>{{$user->name}}</p>
                         <a href="/madefriend?send=<?php echo($_SESSION['login']->user_id) ?>&&get=<?php echo $user->user_id; ?>" class="btn btn-primary">Thêm Bạn Bè</a>
                     </div>
-                
-            <?php
-                endif; 
-            ?>
-                        
+                <?php
+                    endif; 
+                ?>
             @endforeach
             </div>
     </div>
