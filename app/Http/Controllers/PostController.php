@@ -147,10 +147,6 @@ class PostController extends Controller
 
     public function rankPost()
     {
-        // $likes = DB::table('likes')
-        //      ->select(DB::raw('count(post_id),post_id'))
-        //      ->groupby('post_id')
-        //      ->get();
         $likes = likes::select(DB::raw('count(post_id) as count, post_id'))
             ->groupBy('post_id')
             ->orderBy('count', 'desc')

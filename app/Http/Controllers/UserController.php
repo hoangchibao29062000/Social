@@ -147,6 +147,7 @@ class UserController extends Controller
     }
     // Chỉnh sửa thông tin người Dùng
     public function editUser(Request $request) {
+        $id = $_SESSION['login']->user_id;
         if($request->avatar != null) {
          // Xử lý hình ảnh
             // Đường dẫn lưu hình
@@ -173,7 +174,7 @@ class UserController extends Controller
         $_SESSION['login']->email = $update_user['email'];
         $_SESSION['login']->phone = $update_user['phone'];
         $_SESSION['login']->address = $update_user['address'];
-        return redirect('/myInfo');
+        return redirect('/');
     }
 // Lấy Thông Tin Người Dùng
     public function getInfo()

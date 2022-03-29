@@ -6,9 +6,9 @@
       <div class="row m-2">
         <div class="col-1">
             @if ($_SESSION['login']->avatar == null)
-                <a href="#" class="rounded-circle"><img src="images/user.png" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+                <a href="/myInfo?id=<?php echo $_SESSION['login']->user_id?>" class="rounded-circle"><img src="images/user.png" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
             @else
-                <a href="#" class="rounded-circle"><img src="images/avatar/<?php echo ($_SESSION['login']->avatar);  ?>" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+                <a href="/myInfo?id=<?php echo $_SESSION['login']->user_id?>" class="rounded-circle"><img src="images/avatar/<?php echo ($_SESSION['login']->avatar);  ?>" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
             @endif
         </div>
         <div class="col-11">
@@ -68,9 +68,10 @@
         <hr width="100%">
       </div>
   </div>
-
   <!-- Xuất các bài đã được chia sẻ -->
-    @foreach ($shares as $share)
+  {{-- @foreach($friends as $f) --}}
+  @foreach ($shares as $share)
+  {{-- @if(($share->user_id_share == $f->user_id_send || $share->user_id_share == $f->user_id_send) && ($_SESSION['login']->user_id == $f->user_id_send || $_SESSION['login']->user_id == $f->user_id_get) && $f->role == 1 && $d <= $shares->count()) --}}
         <div class="card mt-4 ml-5" style="width:62rem">
             <div class="row m-2">
                 <div class="col-1">
@@ -201,11 +202,12 @@
                 </div>
             </div>
         </div>
-    @endforeach
-
-
-  <!-- NƠI XUẤT BÀI VIẾT -->
+        {{-- @endif --}}
+    {{-- @endforeach --}}
+  @endforeach
+  {{-- @foreach($friends as $f) --}}
   @foreach ($posts as $post)
+  {{-- @if(($post->user_id == $f->user_id_send || $post->user_id == $f->user_id_get) && ($_SESSION['login']->user_id == $f->user_id_send || $_SESSION['login']->user_id == $f->user_id_get) && $f->role == 1 && $s <= $posts->count()) --}}
   <div class="card mt-4 ml-5" style="width:62rem">
     <div class="card-body">
         <!-- Tài khoản đăng -->
@@ -363,8 +365,10 @@
            @endforeach
        </div>
 </div>
-
+{{-- @endif --}}
 @endforeach
+  {{-- @endforeach; --}}
+  <!-- NƠI XUẤT BÀI VIẾT -->
     @endsection
 
 
