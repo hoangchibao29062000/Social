@@ -86,13 +86,13 @@
                             <div class="row">
                                     <div class="col-5">
                                         <label class="h4" href="#" class="text-left">{{ $share->user->name }}</label>
-                                        <label>Shared from
+                                        <label>Được chia sẻ từ
                                             @if($share->post->user_id == $share->user_id_share)
-                                            me
+                                            <label class="h4">Tôi</label>
                                             @else
-                                            {{ $share->post->user->name }}
+                                            <label class="h5">{{ $share->post->user->name }}</label>
                                             @endif
-                                        at {{ $share->created_at->format('H:i__d/m') }}</label>
+                                        lúc {{ $share->created_at->format('H:i__d/m') }}</label>
                                     </div>
                                     @if($share->user->user_id == $_SESSION['login']->user_id)
                                     <div class="col-6 text-right">
