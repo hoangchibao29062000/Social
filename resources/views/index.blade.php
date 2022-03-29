@@ -179,10 +179,10 @@
         <!-- Lượt thích -->
         <div class="row ml-3 mr-3">
             @if($post->likes->count() > 0 )
-            <div class="col-8">
-                <p>
-                    <img src="images/like.png" width="20" height="20" alt="" srcset="">
-                    <span>{{ $post->likes->count() }}</span>
+                <div class="col-8">
+                    <p>
+                        <img src="images/like.png" width="20" height="20" alt="" srcset="">
+                        <span>{{ $post->likes->count() }}</span>
                     </p>
                 </div>
                 @endif
@@ -199,8 +199,8 @@
                 <div class="col-2 text-right">
                     <p>{{ $post->shares->count() }} Luợt chia sẻ</p>
                 </div>
-                @endif
-            </div>
+            @endif
+        </div>
         <!-- Nút Like, Bình Luận, Chia Sẻ -->
         <div class="text-center p-auto m-auto" style="border-top:1px solid; width:70%" >
             <div class="row">
