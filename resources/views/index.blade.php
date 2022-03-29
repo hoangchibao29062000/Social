@@ -122,8 +122,8 @@
                                             <p>{{ $share->post->content }}</p>
                                             </div>
                                         </div>
-                                        <!-- Hình của bài viết -->
-                                        @if ($share->post->image != null)
+                                            <!-- Hình của bài viết -->
+                                            @if ($share->post->image != null)
                                             <img src="images/myPost/{{ $share->post->image }}" height="500">
                                         @endif
                                 </div>
@@ -137,7 +137,9 @@
 
 
   <!-- NƠI XUẤT BÀI VIẾT -->
+
   @foreach ($posts as $post)
+  @if($post->role == 1)
   <div class="card mt-4 ml-5" style="width:62rem">
     <div class="card-body">
         <!-- Tài khoản đăng -->
@@ -296,7 +298,9 @@
        </div>
 </div>
 
+@endif
 @endforeach
+
     @endsection
 
 
