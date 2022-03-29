@@ -75,3 +75,7 @@ Route::get('/share',[ShareController::class, 'share']);
 Route::post('/commentPost',[CommentController::class, 'create']);
 // Điều hướng tới trang Nhật Kí Hoạt Động
 Route::get('/myActivity',[MyActivityController::class, 'index']);
+// Xóa bài viết
+Route::get('/deletePost',[PostController::class, 'destroy']);
+// Xóa chia ser
+Route::get('/deleteShare',[ShareController::class, 'destroy']);

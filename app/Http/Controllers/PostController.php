@@ -153,6 +153,7 @@ class PostController extends Controller
             ->groupBy('post_id')
             ->orderBy('count', 'desc')
             ->get();
+
         $posts = posts::get();
         $comments = comments::orderBy('created_at', 'desc')->get();
         $shares = Share::orderBy('created_at', 'desc')->get();
@@ -160,4 +161,6 @@ class PostController extends Controller
         // dd($likes);
         return view('ranking',compact('posts','likes','comments','shares','friends'),['title' => 'Xếp hạng bài viết']);
     }
+
+
 }
