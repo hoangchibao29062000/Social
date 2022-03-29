@@ -97,7 +97,7 @@ class FriendController extends Controller
         friends::where([
             'id'=>$_GET['id'],
         ])->delete();
-        return redirect('/myFriend');
+        return redirect('/');
     }
     // Xử lý đồng ý kết Bạn
     public function submitFriend() {
@@ -106,6 +106,6 @@ class FriendController extends Controller
         ])->update([
             'role'=>1
         ]);
-        return redirect('/myInfo');
+        return redirect(`/`);
     }
 }
