@@ -58,7 +58,15 @@
                     </div>
                     <!-- Số bạn bè -->
                     <div class="col-6">
-                        20 Bạn Bè
+                        <?php 
+                            $flag = 0;
+                            for ($i=0; $i < count($friends); $i++) { 
+                                if($friends[$i]['role'] == 2 && ($_SESSION['login']->user_id == $friends[$i]['user_id_send'] || $_SESSION['login']->user_id == $friends[$i]['user_id_get'])){
+                                    $flag++;
+                                }
+                            }
+                            echo $flag;
+                        ?> bạn bè
                     </div>
                 </div>
             </div>
@@ -94,28 +102,32 @@
                 @foreach($friends as $friend)
                 <!-- Trường hợp đã kết bạn và người gửi là người đăng nhập -->
                     @if($friend->role == 2 && $friend->user_id_send ==$_SESSION['login']->user_id)
-                    <div class="col-5 mr-4 mb-2 card">
-                        @if($friend->getUserGet->avatar != null && $friend->user_id_send !=$_SESSION['login']->user_id)
-                        <img src="images/avatar/{{$friend->getUserGet->avatar}}" class="card-img-top" alt="...">
-                        @else
-                        <img src="images/user.png" class="card-img-top" alt="...">
-                        @endif
-                        <div class="card-body">
-                            <h5 class="card-title">{{$friend->getUserGet->name}}</h5>
+                        <div class="col-5 mr-4 mb-2 card">
+                            <a href="">
+                                @if($friend->getUserGet->avatar != null && $friend->user_id_get != $_SESSION['login']->user_id)
+                                <img src="images/avatar/{{$friend->getUserGet->avatar}}" class="card-img-top" alt="...">
+                                @else
+                                <img src="images/user.png" class="card-img-top" alt="...">
+                                @endif
+                                <div class="card-body">
+                                    <h5 class="card-title">{{$friend->getUserGet->name}}</h5>
+                                </div>
+                            <a href="">
                         </div>
-                    </div>
                 <!-- Trường hợp đã kết bạn và người nhận là người đăng nhập -->
-                    @elseif($friend->role == 2 && $friend->user_id_get ==$_SESSION['login']->user_id)
-                    <div class="col-5 mr-4 mb-2 card">
-                        @if($friend->getUserSend->avatar != null && $friend->user_id_get !=$_SESSION['login']->user_id)
-                        <img src="images/avatar/{{$friend->getUserGet->avatar}}" class="card-img-top" alt="...">
-                        @else
-                        <img src="images/user.png" class="card-img-top" alt="...">
-                        @endif
-                        <div class="card-body">
-                            <h5 class="card-title">{{$friend->getUserSend->name}}</h5>
+                    @elseif($friend->role == 2 && $friend->user_id_get == $_SESSION['login']->user_id)
+                        <div class="col-5 mr-4 mb-2 card">
+                            <a href="">
+                                @if($friend->getUserSend->avatar != null && $friend->user_id_send != $_SESSION['login']->user_id)
+                                <img src="images/avatar/{{$friend->getUserSend->avatar}}" class="card-img-top" alt="...">
+                                @else
+                                <img src="images/user.png" class="card-img-top" alt="...">
+                                @endif
+                                <div class="card-body">
+                                    <h5 class="card-title">{{$friend->getUserSend->name}}</h5>
+                                </div>
+                            </a>
                         </div>
-                    </div>
                     @else
                         <?php $tmp++ ;?>
                     @endif
