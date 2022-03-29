@@ -120,9 +120,18 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-
+        //delete post
+        $post_id = $_GET['id'];
+        Share::where('post_id_share',$post_id)->delete();
+        likes::where('post_id',$post_id)->delete();
+        comments::where('post_id',$post_id)->delete();
+        posts::where([
+            'post_id'=>$_GET['id'],
+            'user_id'=>$_SESSION['login']->user_id,
+        ])->delete();
+        return redirect('/');
     }
     // Phương thức điều hướng tới tab Bài Viết Của Tôi
     public function myPost() {

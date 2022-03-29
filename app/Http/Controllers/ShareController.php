@@ -14,4 +14,9 @@ class ShareController extends Controller
         ]);
         return redirect('/');
     }
+
+    public function destroy(Request $request){
+        Share::where('id',$_GET['id'])->delete();
+        return redirect('/');
+    }
 }
