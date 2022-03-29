@@ -55,7 +55,7 @@ class PostController extends Controller
             // Đường dẫn lưu hình
             $target_dir= "images/myPost";
             // File hình
-            $image =  date("d-m-Y H:i:s",time()).'_'.$request->image->getClientOriginalName();
+            $image =  date("d-m-Y",time()).'_'.$request->image->getClientOriginalName();
             // Tạo đường tới folder lưu hình
             $destinationPath =public_path($target_dir);
             // Dẫn file tới folder
@@ -137,22 +137,28 @@ class PostController extends Controller
     public function myPost() {
         $id = $_SESSION['login']->user_id;
         // get posts by id order by created_at desc
+        $shares = Share::orderBy('created_at', 'desc')->get();
         $posts = posts::where('user_id', $id)->orderBy('created_at', 'desc')->get();
         $likes = likes::get();
+
         $comments =comments::get();
-        return view('myPost', compact('posts','likes','comments'), ['title' => 'Bài Viết Của Tôi']);
+        return view('myPost', compact('posts','likes','comments', 'shares'), ['title' => 'Bài Viết Của Tôi']);
     }
 
     public function rankPost()
     {
-        // $likes = DB::table('likes')
-        //      ->select(DB::raw('count(post_id),post_id'))
-        //      ->groupby('post_id')
-        //      ->get();
         $likes = likes::select(DB::raw('count(post_id) as count, post_id'))
             ->groupBy('post_id')
             ->orderBy('count', 'desc')
             ->get();
+        $likes = DB::table('likes')
+             ->select(DB::raw('count(post_id),post_id'))
+             ->groupby('post_id')
+             ->get();
+        // $likes = likes::select(DB::raw('count(post_id) as count, post_id'))
+        //     ->groupBy('post_id')
+        //     ->orderBy('count', 'desc')
+        //     ->get();
         $posts = posts::get();
         $comments = comments::orderBy('created_at', 'desc')->get();
         $shares = Share::orderBy('created_at', 'desc')->get();
@@ -160,4 +166,6 @@ class PostController extends Controller
         // dd($likes);
         return view('ranking',compact('posts','likes','comments','shares','friends'),['title' => 'Xếp hạng bài viết']);
     }
+
+
 }

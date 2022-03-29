@@ -12,6 +12,7 @@ class likes extends Model
         'post_id',
         'user_id',
     ];
+<<<<<<< HEAD
      // Lấy thông tin người đăng bài viết
      public function getUserUpPost(){
         return $this->hasOne('App\Models\User' ,'user_id','user_id');
@@ -32,4 +33,9 @@ class likes extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
+=======
+
+>>>>>>> 4175eff2e79b353606b1ffd4431e19719e0ecf7d
 }
+
+

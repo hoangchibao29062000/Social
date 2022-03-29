@@ -6,9 +6,9 @@
       <div class="row m-2">
         <div class="col-1">
             @if ($_SESSION['login']->avatar == null)
-                <a href="#" class="rounded-circle"><img src="images/user.png" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+                <a href="/myInfo?id=<?php echo $_SESSION['login']->user_id?>" class="rounded-circle"><img src="images/user.png" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
             @else
-                <a href="#" class="rounded-circle"><img src="images/avatar/<?php echo ($_SESSION['login']->avatar);  ?>" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
+                <a href="/myInfo?id=<?php echo $_SESSION['login']->user_id?>" class="rounded-circle"><img src="images/avatar/<?php echo ($_SESSION['login']->avatar);  ?>" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
             @endif
         </div>
         <div class="col-11">
@@ -68,9 +68,10 @@
         <hr width="100%">
       </div>
   </div>
-
   <!-- Xuất các bài đã được chia sẻ -->
-    @foreach ($shares as $share)
+  {{-- @foreach($friends as $f) --}}
+  @foreach ($shares as $share)
+  {{-- @if(($share->user_id_share == $f->user_id_send || $share->user_id_share == $f->user_id_send) && ($_SESSION['login']->user_id == $f->user_id_send || $_SESSION['login']->user_id == $f->user_id_get) && $f->role == 1 && $d <= $shares->count()) --}}
         <div class="card mt-4 ml-5" style="width:62rem">
             <div class="row m-2">
                 <div class="col-1">
@@ -86,20 +87,20 @@
                             <div class="row">
                                     <div class="col-5">
                                         <label class="h4" href="#" class="text-left">{{ $share->user->name }}</label>
-                                        <label>Shared from 
+                                        <label>Được chia sẻ từ
                                             @if($share->post->user_id == $share->user_id_share)
-                                            me
+                                            <label class="h4">Tôi</label>
                                             @else
-                                            {{ $share->post->user->name }}
-                                            @endif    
-                                        at {{ $share->created_at->format('H:i__d/m') }}</label>
+                                            <label class="h5">{{ $share->post->user->name }}</label>
+                                            @endif
+                                        lúc {{ $share->created_at->format('H:i__d/m') }}</label>
                                     </div>
                                     @if($share->user->user_id == $_SESSION['login']->user_id)
                                     <div class="col-6 text-right">
                                         <button class="btn btn-light dropdown-share" style="border-radius: 360px;"><img src="images/dots.png" width="20" height="20" alt="" srcset="">
                                             <div class="dropdown-content-share">
                                                 <a class="btn btn-info">Chỉnh Sửa</a>
-                                                <a class="btn btn-danger">Xóa</a>
+                                                <a class="btn btn-danger"  href="/deleteShare?id={{ $share->id }}">Xóa</a>
                                             </div>
                                         </button>
                                     </div>
@@ -152,7 +153,7 @@
                     <p>{{ $share->comments->count() }} bình luận</p>
                 </div>
                 @endif
-               
+
             </div>
         <!-- Nút Like, Bình Luận, Chia Sẻ -->
         <div class="text-center p-auto m-auto" style="border-top:1px solid; width:70%" >
@@ -192,7 +193,7 @@
                         Bình Luận
                     </button>
                 </div>
-               
+
             </div>
         </div>
                             </div>
@@ -201,11 +202,12 @@
                 </div>
             </div>
         </div>
-    @endforeach
-
-
-  <!-- NƠI XUẤT BÀI VIẾT -->
+        {{-- @endif --}}
+    {{-- @endforeach --}}
+  @endforeach
+  {{-- @foreach($friends as $f) --}}
   @foreach ($posts as $post)
+  {{-- @if(($post->user_id == $f->user_id_send || $post->user_id == $f->user_id_get) && ($_SESSION['login']->user_id == $f->user_id_send || $_SESSION['login']->user_id == $f->user_id_get) && $f->role == 1 && $s <= $posts->count()) --}}
   <div class="card mt-4 ml-5" style="width:62rem">
     <div class="card-body">
         <!-- Tài khoản đăng -->
@@ -217,7 +219,7 @@
                     <a href="#" class="rounded-circle"><img src="images/avatar/{{$post->user->avatar }}" class="rounded-circle p-0 m-0" width="50px" height="50" alt="" srcset=""></a>
                 @endif
             </div>
-            <div class="col-9 text-left">
+            <div class="col-8 text-left">
                 <p class="h5"> {{$post->user->name }}</p>
                 <p class="text-secondary">{{ $post->created_at->format('d/m_____H:i') }}<img src="images/friends.png" width="20" height="20" alt="" srcset=""></p>
             </div>
@@ -226,7 +228,7 @@
                 <button class="btn btn-light dropdown-friend" style="border-radius: 360px;"><img src="images/dots.png" width="20" height="20" alt="" srcset="">
                     <div class="dropdown-content-friend">
                         <a class="btn btn-info">Chỉnh Sửa</a>
-                        <a class="btn btn-danger">Xóa</a>
+                        <a class="btn btn-danger" href="/deletePost?id={{ $post->post_id }}">Xóa</a>
                     </div>
                 </button>
             </div>
@@ -363,8 +365,10 @@
            @endforeach
        </div>
 </div>
-
+{{-- @endif --}}
 @endforeach
+  {{-- @endforeach; --}}
+  <!-- NƠI XUẤT BÀI VIẾT -->
     @endsection
 
 

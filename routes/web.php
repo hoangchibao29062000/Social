@@ -56,9 +56,7 @@ Route::get('/listAddFriend', function () {
 // Điều hướng xóa lời mời kết Bạn
 Route::get('deleteInviteFriend',[FriendController::class, 'deleteInviteFriend'])->name('friend.deleteInviteFriend');
 // Điều hướng tới trang xếp hạng bài viết
-Route::get('/ranking', function () {
-    return view('ranking',['title' => 'Xếp Hạng Bài Viết']);
-});
+Route::get('/ranking', [PostController::class, 'rankPost'])->name('post.ranking');
 // Điều hướng tới trang Thông Tin Bài Viết
 Route::get('/detailPost', function () {
     return view('detailPost',['title' => 'Thông Tin Bài Viết']);
@@ -75,3 +73,7 @@ Route::get('/share',[ShareController::class, 'share']);
 Route::post('/commentPost',[CommentController::class, 'create']);
 // Điều hướng tới trang Nhật Kí Hoạt Động
 Route::get('/myActivity',[MyActivityController::class, 'index']);
+// Xóa bài viết
+Route::get('/deletePost',[PostController::class, 'destroy']);
+// Xóa chia ser
+Route::get('/deleteShare',[ShareController::class, 'destroy']);
