@@ -75,3 +75,7 @@ Route::get('/unlike',[LikeController::class, 'destroy']);
 Route::get('/share',[ShareController::class, 'share']);
 //Bình Luận Bài Viết
 Route::post('/commentPost',[CommentController::class, 'create']);
+// Xóa bài viết
+Route::get('/deletePost',[PostController::class, 'destroy']);
+// Xóa chia ser
+Route::get('/deleteShare',[ShareController::class, 'destroy']);
