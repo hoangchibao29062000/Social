@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('shares', function (Blueprint $table) {
-            $table->id();
+            $table->id('share_id');
             $table->timestamps();
         });
         Schema::table('shares', function (Blueprint $table) {

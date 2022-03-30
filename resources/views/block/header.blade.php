@@ -6,15 +6,15 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <input type="text" placeholder="Bạn cần tìm...." class="form-control" style="border-radius: 360px; width:250px">
-    <ul class="navbar-nav m-auto">
+    <ul class="navbar-nav container">
       <!-- Nút Trang Chủ -->
       <li class="nav-item ">
         <a class="nav-link" href="/"><button class="btn btn-light"><img src="images/home.png" alt="" srcset="" width="45" height="45"></button></a>
       </li>
       <!-- Nút Xếp Hạng Bài Viết -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="/ranking"><button class="btn btn-light"><img src="images/ranking.png" alt="" srcset="" width="45" height="45"></button></a>
-      </li>
+      </li> -->
       
     </ul>
     <div class="form-inline my-2 ml-auto">

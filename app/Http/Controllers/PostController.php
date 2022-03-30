@@ -20,10 +20,11 @@ class PostController extends Controller
     public function index()
     {
         $posts = posts::orderBy('created_at', 'desc')->get();
+        $shares = Share::orderBy('created_at', 'desc')->get();
         $likes = likes::get();
         $comments = comments::orderBy('created_at', 'desc')->get();
-        $shares = Share::orderBy('created_at', 'desc')->get();
         $friends = Friends::orderBy('created_at', 'desc')->get();
+        
         // Xét trường hợp đã login hay chưa
         if(!isset($_SESSION['login'])) {
             return redirect('/login');

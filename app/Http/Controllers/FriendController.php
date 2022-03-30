@@ -106,6 +106,6 @@ class FriendController extends Controller
         ])->update([
             'role'=>1
         ]);
-        return redirect(`/`);
+        return redirect('/');
     }
 }

@@ -62,7 +62,7 @@
                             <?php 
                                 $flag = 0;
                                 for ($i=0; $i < count($friends); $i++) { 
-                                    if($friends[$i]['role'] == 2 && ($users[0]['user_id'] == $friends[$i]['user_id_send'] || $users[0]['user_id'] == $friends[$i]['user_id_get'])){
+                                    if($friends[$i]['role'] == 1 && ($users[0]['user_id'] == $friends[$i]['user_id_send'] || $users[0]['user_id'] == $friends[$i]['user_id_get'])){
                                         $flag++;
                                     }
                                 }
@@ -97,6 +97,7 @@
             </p>
         </div>
         <div class="col-4">
+            <!-- Nơi Xuất Danh Sách Bạn Bè -->
             <h3>Danh Sách Bạn Bè</h3>
             <?php $tmp = 0?>
             <div class="row">
@@ -106,9 +107,9 @@
                         <div class="col-5 mr-4 mb-2 card">
                             <a href="/myInfo?id=<?php echo $friend->user_id_get; ?>">
                                 @if($friend->getUserGet->avatar != null && $friend->user_id_get != $users[0]['user_id'])
-                                    <img src="images/avatar/{{$friend->getUserGet->avatar}}" class="card-img-top" alt="...">
+                                    <img src="images/avatar/{{$friend->getUserGet->avatar}}" height="200px" class="card-img-top" alt="...">
                                 @else
-                                    <img src="images/user.png" class="card-img-top" alt="...">
+                                    <img src="images/user.png" class="card-img-top" height="200px" alt="...">
                                 @endif
                                     <div class="card-body">
                                         <h5 class="card-title">{{$friend->getUserGet->name}}</h5>
@@ -120,9 +121,9 @@
                         <div class="col-5 mr-4 mb-2 card">
                             <a href="/myInfo?id=<?php echo $friend->user_id_send; ?>">
                                 @if($friend->getUserSend->avatar != null && $friend->user_id_send != $users[0]['user_id'])
-                                    <img src="images/avatar/{{$friend->getUserSend->avatar}}" class="card-img-top" alt="...">
+                                    <img src="images/avatar/{{$friend->getUserSend->avatar}}" height="200px" class="card-img-top" alt="...">
                                 @else
-                                    <img src="images/user.png" class="card-img-top" alt="...">
+                                    <img src="images/user.png" class="card-img-top" height="200px" alt="...">
                                 @endif
                                     <div class="card-body">
                                         <h5 class="card-title">{{$friend->getUserSend->name}}</h5>

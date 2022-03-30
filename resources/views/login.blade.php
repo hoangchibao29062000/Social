@@ -17,7 +17,7 @@
                    <!-- Nút Đăng Nhập -->
                    <div class="m-3 text-center">
                     <button type="submit" class="btn btn-primary form-control mb-3" >Đăng nhập</button>
-                    <a href="">Quên mật khẩu</a>
+                    <!-- <a href="">Quên mật khẩu</a> -->
                    </div>
                </form>
                <hr width="60%">

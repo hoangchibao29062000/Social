@@ -4,7 +4,19 @@
     $listFriend = array();
 ?>
     <div class="mt-3">
-        <h3>Danh Sách Chờ Đồng Ý Kết Bạn</h3>
+       <?php
+       $flag = 0;
+       foreach($friends as $friend) {
+
+           if($friend->role == 1) {
+               $flag++;
+            }
+        }
+        if($flag != count($friends)) {
+            
+            echo "<h3>Danh Sách Gởi Lời Kết Bạn</h3>";
+        }
+       ?>
         <div class="row">
             @foreach ($friends as $friend)
             <!-- Trường hợp có người gởi lời kết bạn cho mình -->
@@ -18,12 +30,12 @@
             <!-- Trường hợp mình gởi lời kết bạn cho người khác -->
                 @elseif ($friend->role == 0 && $friend->user_id_send ==$_SESSION['login']->user_id)
                     <a href="/myInfo?id=<?php echo $friend->getUserGet->user_id ?>">
-                        <div class="card col-3 mr-3">
+                        <div class="card col-2 mr-3" >
                             <p><b>{{$friend->getUserGet->name}}</b></p>
                             @if($friend->getUserGet->avatar == null)
-                                <img src="images/user.png" alt="" srcset="" height="200"class="card-img-top" srcset="">
+                                <img src="images/user.png" alt="" srcset="" height="200" class="card-img-top" srcset="">
                             @else
-                                <img src="images/avatar/{{$friend->getUserGet->avatar}}"height="200" class="card-img-top" alt="" srcset="">
+                                <img src="images/avatar/{{$friend->getUserGet->avatar}}"height="200"  class="card-img-top" alt="" srcset="">
                             @endif
                             <p>Đã gửi lời kết bạn</p>
                             <a href="/deleteInviteFriend?id={{$friend->id}}" class="btn btn-secondary">Hủy</a>

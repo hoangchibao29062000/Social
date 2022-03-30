@@ -19,6 +19,7 @@ class posts extends Model
         'user_id',
         'date'
     ];
+    
     // Lấy thông tin người đăng
     public function user(){
         return $this->hasOne('App\Models\User' ,'user_id','user_id');
